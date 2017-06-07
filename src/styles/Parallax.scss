@@ -1,0 +1,32 @@
+
+$eggshell: #f7f4e9;
+$raisinblack: #270b20;
+// Parallax
+.parallax {
+    position: relative;
+    background-repeat: no-repeat no-repeat;
+    overflow: hidden;
+    background-size: 100px auto;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+    height: 100%;
+    width: 10px;
+}
+
+.parallax__spacer {
+    background-color: rgba(0,0,0,0.05);
+    // border: 1px solid rgba(222,222,222,0.4);
+    height: calc(100vh - 175px); // 175px for carousel height
+}
+
+.parallax__textbox {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 1.1em;
+    background-color: transparentize($raisinblack, 0);
+    top: 300px;
+    opacity: 0;
+}

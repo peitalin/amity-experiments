@@ -1,0 +1,190 @@
+
+
+$primary-color: #96616B;
+// $primary-color: #1BD1C1;
+// $slider-color: #F8BD7F;
+$slider-color: #96616B;
+
+.hero-outer-container {
+}
+
+.hero-container {
+  padding-top: 50px;
+  background-color: #f8f8f8;
+  max-width: calc(100vw - 300px); // 300px is width of chat
+  // -webkit-animation: slideAnim 0.6s cubic-bezier(0.7,0,0.2,1) both;
+  // animation: slideAnim 0.6s cubic-bezier(0.7,0,0.2,1) both;
+  // -webkit-animation-delay: 0.1s;
+  // animation-delay: 0.1s;
+}
+
+.hero-container .landing-page-header-container .landing-page-header {
+
+  div:first-child {
+    -webkit-animation: slideAnim 0.6s cubic-bezier(0.7,0,0.3,1) both;
+    animation: slideAnim 0.6s cubic-bezier(0.7,0,0.3,1) both;
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+  }
+
+  div:nth-child(2) {
+    -webkit-animation: slideAnim 0.5s cubic-bezier(0.7,0,0.3,1) both;
+    animation: slideAnim 0.5s cubic-bezier(0.7,0,0.3,1) both;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+
+  div:nth-child(3) {
+    -webkit-animation: slideAnim 0.4s cubic-bezier(0.7,0,0.3,1) both;
+    animation: slideAnim 0.4s cubic-bezier(0.7,0,0.3,1) both;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+  }
+}
+
+.background-color-slider {
+  background-color: $slider-color;
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  -webkit-animation: slideAnim 0.8s cubic-bezier(0.7,0,0.3,1) both;
+  animation: slideAnim 0.8s cubic-bezier(0.7,0,0.3,1) both;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+@keyframes slideAnim {
+  from {
+    opacity: 1;
+    -webkit-transform: translate3d(80%,0,0);
+    transform: translate3d(80%,0,0);
+  }
+}
+
+
+
+
+.content-categories {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: calc(100vh - 95vh);
+  animation: fadeInLanguages 1s cubic-bezier(0.6,0,0.4,1);
+  animation-delay: 0.5s;
+
+  .categories {
+    margin: 0.2rem;
+    a {
+      color: $primary-color;
+      font-size: 0.8rem;
+    }
+    a:hover {
+      color: #D4AFDF;
+    }
+  }
+}
+
+@keyframes fadeInLanguages {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50px, 0);
+  }
+}
+
+
+
+
+.landing-page-listings-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.landing-page-listings-flex {
+  z-index: 1;
+  border-left: 3px solid $primary-color;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+$listings-width: 10rem;
+$listings-height: 15rem;
+
+.landing-page-listings {
+  border: 2px solid lighten($primary-color, 20%);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: $listings-width;
+  height: $listings-height;
+}
+.listings-rotated {
+  width: $listings-height;
+  height: $listings-width;
+}
+
+@media screen and (min-aspect-ratio: 8/16) and (max-width: 600px) {
+  /* portrait */
+  $listings-width: 8rem;
+  $listings-height: 12rem;
+
+  .landing-page-listings {
+    margin: 0.2rem;
+    padding: 0.2rem;
+    width: $listings-width;
+    height: $listings-height;
+  }
+}
+@media screen and (min-aspect-ratio: 16/10) and (max-width: 780px) {
+  /* landscape */
+  $listings-width: 8rem;
+  $listings-height: 12rem;
+
+  .landing-page-listings {
+    margin: 0.2rem;
+    padding: 0.2rem;
+    width: $listings-width;
+    height: $listings-height;
+  }
+}
+
+
+
+
+.draggable-outer {
+  background-color: rgba(222,222,222, 0.2);
+  display: flex;
+  justify-content: center;
+
+  span {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+// CSS transitions
+.landing-header-fade-appear {
+  opacity: 0.01;
+}
+.landing-header-fade-appear.landing-header-fade-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+.landing-header-fade-enter {
+  opacity: 0.01;
+}
+.landing-header-fade-enter.landing-header-fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+.landing-header-fade-leave {
+  opacity: 1;
+}
+.landing-header-fade-leave.landing-header-fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

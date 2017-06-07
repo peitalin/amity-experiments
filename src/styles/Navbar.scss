@@ -1,0 +1,45 @@
+
+$navy: #37505C;
+$primary-color: #96616B;
+// $primary-color: #1BD1C1;
+// $slider-color: #F8BD7F;
+$slider-color: #96616B;
+
+
+.navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 50px;
+  background-color: $primary-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 1%;
+
+  a {
+    color: lighten($primary-color, 40%);
+    font-size: 1.1rem;
+    padding-top: 5px;
+  }
+  div {
+    padding-top: 5px;
+  }
+}
+
+.Nav__userprofile {
+  color: lighten($primary-color, 40%);
+  font-size: 1.1rem;
+}
+
+.Nav__upvotes {
+  color: #77c058;
+  font-size: 1.1rem;
+}
+.Nav__downvotes {
+  color: #D17B88;
+  font-size: 1.1rem;
+}
+
