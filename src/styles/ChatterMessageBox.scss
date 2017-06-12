@@ -1,0 +1,125 @@
+
+$blanched-almond: #FFEAD0;
+
+.chatter__messagebox {
+  padding: 40px 15px 25px 15px;
+  height: calc(100vh - 50px - 144px); /* 50px is the navbar height, 100px is the textbox height */
+  overflow-y: scroll;
+  background-color: rgba(255,255,255, 0.5);
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* messages are stacked on the bottom, instead of top */
+    min-height: calc(70vh);
+    /* min-height ensures page needs to scroll on 1st message to trigger `onScroll` event
+      for emotional UI changes. Otherwise will need to wait for messageBox to fill up before
+      `onScroll` is triggered.
+     */
+  }
+
+  li {
+    margin-bottom: 15px;
+  }
+
+  .time {
+    margin: 5px 0;
+    text-align: center;
+    width: 100%;
+
+    > span {
+      display: inline-block;
+      padding: 0 15px;
+      font-size: 12px;
+      color: #fff;
+      border-radius: 2px;
+      background-color: #dcdcdc;
+    }
+  }
+
+  .text-message-container {
+    position: relative;
+  }
+
+  .text-message {
+    position: relative;
+    height: calc(100% - 40px);
+    background-color: rgba(0,0,0,0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   }
+
+  .avatar {
+    position: absolute;
+    top: 25px;
+    margin: 0 0 0 0;
+    border-radius: 3px;
+    min-height: 40px;
+    width: 40px;
+    object-fit: cover;
+  }
+  .text-bubble {
+    position: relative;
+    left: 50px;
+    padding: 10px 16px 10px 10px;
+    max-width: calc(100% - 50px);
+    min-height: 40px;
+    font-size: 12px;
+    text-align: left;
+    // word-break: break-all;
+    background-color: #fafafa;
+
+    &:before {
+      content: " ";
+      position: absolute;
+      top: 9px;
+      right: 100%;
+      border: 6px solid transparent;
+      border-right-color: #fafafa;
+    }
+
+    .upvote {
+      font-size: 16px;
+      color: #1BD1C1;
+      position: absolute;
+      right: 4px;
+      bottom: 20px;
+    }
+    .downvote {
+      font-size: 16px;
+      color: #D37378;
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+    }
+  }
+
+  .self {
+    text-align: right;
+    transform: rotateY(180deg);
+
+    .time {
+      transform: rotateY(180deg);
+    }
+    .avatar {
+      margin: 0 0 0 0;
+      transform: rotateY(180deg);
+    }
+    .text-bubble {
+      background-color: #b2e281;
+      transform: rotateY(180deg);
+
+      &:before {
+        right: inherit;
+        left: 100%;
+        border-right-color: transparent;
+        border-left-color: #b2e281;
+      }
+      .upvote, .downvote {
+        display: none;
+      }
+    }
+  }
+}

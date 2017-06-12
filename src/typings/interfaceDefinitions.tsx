@@ -8,11 +8,10 @@ export interface userGQL {
   id?: string
   name?: string
   emailAddress?: string
+  img?: string
   upvotes?: number
   downvotes?: number
-  cards?: string[]
-  bids?: iBid[]
-  predictions?: iPrediction[]
+  streams?: string[]
 }
 
 export interface iPrediction {

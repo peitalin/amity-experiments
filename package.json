@@ -1,5 +1,5 @@
 {
-  "name": "Arrow",
+  "name": "Amity-experiments",
   "version": "1.0.0",
   "entry": "./src/index.tsx",
   "repository": {},
@@ -127,6 +127,7 @@
     "redux": "^3.6.0",
     "redux-persist": "^4.4.2",
     "redux-thunk": "^2.2.0",
-    "subscriptions-transport-ws": "^0.5.5"
+    "subscriptions-transport-ws": "^0.5.5",
+    "swearjar": "^0.2.0"
   }
 }

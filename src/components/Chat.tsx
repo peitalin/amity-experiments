@@ -1,11 +1,11 @@
 
 
 import * as React from 'react'
-import 'styles/Chat.scss';
-
+import 'styles/Chat.scss'
+import ChatterMessageBox from './ChatterMessageBox'
+import ChatterTextBox from './ChatterTextBox'
 
 interface DispatchProps {
-  updateLngLat?(lngLat: any): Dispatch<A>
 }
 
 interface StateProps {
@@ -22,10 +22,8 @@ class Chat extends React.Component<StateProps & DispatchProps & ReactProps, any>
   render() {
     return (
       <div className='chat__container'>
-        Chat
-        <textarea id="" name="" cols="30" rows="10">
-         allo text area
-        </textarea>
+        <ChatterMessageBox/>
+        <ChatterTextBox/>
       </div>
     )
   }

@@ -66,7 +66,7 @@ class AppApollo extends React.Component<any, AppApolloState> {
 
   private persistReduxStore = (GRAPHQL_PROJECT_ID) => {
 
-    let persistState = true;
+    let persistState = false;
 
     getStoredState({ storage: localforage }, (err, rehydratedState) => {
       // const initialState = { apollo: { data: rehydratedState.apollo ? rehydratedState.apollo.data : {} }}

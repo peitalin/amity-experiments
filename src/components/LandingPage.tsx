@@ -4,8 +4,9 @@ import * as React from 'react'
 
 import WorldMap from './WorldMap'
 import ImgOverlay from './ImgOverlay'
-import Carousel from './Carousel.tsx'
-import CarouselTile from './CarouselTile.tsx'
+import Carousel from './Carousel'
+import CarouselTile from './CarouselTile'
+
 
 
 import * as CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
@@ -59,40 +60,38 @@ export default class LandingPage extends React.Component<any, any> {
         <div className='hero-container'>
           { this.languageNav() }
 
+          <div className="cn-cover cn-cover--withimage js-cn-cover"
+            style={{ backgroundImage: "url(https://static-cdn.jtvnw.net/jtv_user_pictures/twitch-profile_banner-6936c61353e4aeed-480.png)"}}>
+          </div>
+
           <div className="landing-page-listings-container">
             <div className='landing-page-listings-flex'>
-              <ImgOverlay src={require('../img/game1.jpg')}
-                title="League of Legends"
-                subtitle="Multiplayer Online Battler"
-                players={["AncientOne", "ZergKing"]}
-              />
               <ImgOverlay src={require("../img/game2.jpg")}
                 title="Overwatch"
                 subtitle="Multiplayer Online Battler"
                 players={["PinkEye", "Urgoz"]}
               />
-              <ImgOverlay src={require("../img/game3.jpg")}
-                title="World of Warcraft"
-                subtitle="HearthStone"
-                players={["TheLastTauren", "Nerchio"]}
-              />
+              {/* <ImgOverlay src={require("../img/game3.jpg")} */}
+              {/*   title="World of Warcraft" */}
+              {/*   subtitle="HearthStone" */}
+              {/*   players={["TheLastTauren", "Nerchio"]} */}
+              {/* /> */}
               <ImgOverlay src={require("../img/game4.jpg")}
                 title="GTA V"
                 subtitle="Capture the Hill"
                 players={["Vinny El Capo", "Don Donburry"]}
               />
-              <ImgOverlay src={require("../img/game5.jpg")}
-                title="Destiny"
-                subtitle="Bungie Jump"
-                players={["TLO", "Day98"]}
-              />
+              {/* <ImgOverlay src={require("../img/game5.jpg")} */}
+              {/*   title="Destiny" */}
+              {/*   subtitle="Bungie Jump" */}
+              {/*   players={["TLO", "Day98"]} */}
+              {/* /> */}
             </div>
           </div>
+        </div>
 
-
-
-
-          <div className="landing-page-listings-container">
+        <div className='hero-container'>
+          <div className="landing-page-listings-container fixed--carousel">
             <div className='landing-page-listings-flex'>
               <Carousel className='prediction__listings__carousel'>
               {(
@@ -111,7 +110,6 @@ export default class LandingPage extends React.Component<any, any> {
               </Carousel>
             </div>
           </div>
-
         </div>
       </div>
     )

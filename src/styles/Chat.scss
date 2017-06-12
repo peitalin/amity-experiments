@@ -4,20 +4,30 @@ $primary-color: #96616B;
 // $slider-color: #F8BD7F;
 $slider-color: #96616B;
 
+$secondary-color: #f68084;
+$darkened-primary-color: #4179FD;
+$darkened-secondary-color: #EF2128;
+
+
+
 .chat__container {
-  z-index: 1;
+  z-index: 3;
   position: fixed;
   right: 0;
-  top: 0;
-  width: 300px;
-  height: 100vh;
-  background-color: lighten($primary-color, 30%);
+  top: 50px;
+  width: 360px;
+  height: calc(100vh - 50px);
+  overflow: hidden;
+  background-color: rgba(255,255,255, 0.5);
   border-left: 2px solid $primary-color;
 
-  textarea {
-    position: absolute;
-    width: 100%;
-    right: 0;
-    bottom: 0;
+  .sidebar {
+    float: left;
+    width: 240px;
+    color: #f4f4f4;
+    background: linear-gradient(120deg, $secondary-color 0%, $primary-color 100%);
+  }
+  .message {
+    height: calc(100% - 160px);
   }
 }
