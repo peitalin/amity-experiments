@@ -19,6 +19,9 @@ interface StateProps {
   session: iSessionType
   lastMessage: iMessageType
   myUserProfile: userGQL
+  users: {
+    [index: string]: userGQL
+  }
 }
 interface ReactProps {
   data?: any
@@ -56,10 +59,8 @@ class ChatterMessageBox extends React.Component<DispatchProps & StateProps & Rea
   emotionalValence = () => {
     // https://en.wikipedia.org/wiki/Emotion_classification
     if (swearjar.profane(this.props.lastMessage.content)) {
-      console.info('negative emotionalValence')
       return 'negative'
     } else {
-      console.info('positive emotionalValence')
       return 'positive'
     }
   }
@@ -75,9 +76,9 @@ class ChatterMessageBox extends React.Component<DispatchProps & StateProps & Rea
     })
     if (this.emotionalIntensity() > 5) {
       if (this.emotionalValence() === 'negative') {
-        TweenLite.from(msgBox, 2, { backgroundColor: '#e66' })
+        TweenLite.from(msgBox, 2, { backgroundColor: '#D17B88' })
       } else {
-        TweenLite.from(msgBox, 2, { backgroundColor: '#6ae' })
+        TweenLite.from(msgBox, 2, { backgroundColor: '#F8BD7F' })
       }
     }
     if (this.emotionalIntensity() > 8) {
@@ -91,7 +92,6 @@ class ChatterMessageBox extends React.Component<DispatchProps & StateProps & Rea
 
   componentDidUpdate(prevProps, prevState) {
     if ((new Date - this.props.lastMessage.date) < 100) {
-      console.info("SCROLLING DOWN")
       // call scrollBottom animation only after a new message is sent (100ms)
       // otherwise will animate every time this component re-renders (e.g. session changes)
       this.scrollBottom()
@@ -101,6 +101,7 @@ class ChatterMessageBox extends React.Component<DispatchProps & StateProps & Rea
   render() {
     return (
       <div className="chatter__messagebox">
+      <div className="chatter__forum_thread"><h2>Forum Thread</h2></div>
       {(
         this.props.session.messages.map((msg, i) => {
           return (
@@ -111,9 +112,15 @@ class ChatterMessageBox extends React.Component<DispatchProps & StateProps & Rea
                   <span>ID: <span>{ this.props.session.id }</span></span>
                 </p>
                 <img className="avatar" src={(
-                  msg.userSelf ? this.props.myUserProfile.img : this.props.session.userGQL.img
+                  (msg.userName === this.props.myUserProfile.name)
+                  ? this.props.myUserProfile.img
+                  : this.props.users[msg.userName].img
                 )}/>
-                <div className={className({ "text-bubble": true, 'myself': msg.userSelf, 'other': !msg.userSelf }) }>
+                <div className={className({
+                  'text-bubble': true,
+                  'myself': (msg.userName === this.props.myUserProfile.name),
+                  'other': (msg.userName !== this.props.myUserProfile.name),
+                })}>
                   { msg.content }
                   <div className="upvote">△</div>
                   <div className="downvote">▽</div>
@@ -133,6 +140,7 @@ const mapStateToProps = ( state: ReduxState ) => {
   return {
     session: state.reduxUser.sessions[state.reduxUser.currentSessionId],
     myUserProfile: state.reduxUser.userGQL,
+    users: state.reduxUser.users,
     lastMessage: state.reduxUser.sessions[state.reduxUser.currentSessionId].messages.slice(-1)[0]
   }
 }

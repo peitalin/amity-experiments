@@ -44,7 +44,7 @@ $img-height: 15rem;
       padding-left: calc(2% - 4px);
       padding-right: 10%;
       border-left: 4px solid $primary-color;
-      max-width: 720px;
+      max-width: 600px;
       h3 {
         line-height: 1rem;
         margin-top: 0.5rem;
@@ -61,14 +61,15 @@ $img-height: 15rem;
 
 
 .img-overlay-container.img-overlay__clicked {
+  max-width: calc(100vw - 360px);
   order: 0; // flexbox order
 
   .img-overlay {
     transition: height 0.2s ease, width 0.2s ease;
 
     img {
-      width: 20rem;
-      height: 30rem;
+      width: calc(#{$img-width} * 0.66);
+      height: calc(#{$img-height} * 0.66);
       pointer-events: none;
     }
   }
@@ -87,12 +88,12 @@ $img-height: 15rem;
 }
 
 .twitch-container {
-  height: 60vw;
+  height: 40vw;
   min-height: 40vh;
-  width: 100%;
+  max-width: calc(100vw - 360px);
   padding: 0% 0%;
-  border-top: 3px solid $primary-color;
-  border-bottom: 3px solid $primary-color;
+  border-top: 2px solid $primary-color;
+  border-bottom: 2px solid $primary-color;
   transition: background-color 0.4s ease;
   background-color: #444444;
   display: flex;
@@ -100,13 +101,13 @@ $img-height: 15rem;
   background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url('http://sf.co.ua/14/02/wallpaper-442831.jpg');
 
   iframe {
+    max-width: calc(100vw - 360px);
     width: 100%;
     height: 100%;
     fill: #edeeee;
     transition: transform 0.5s ease;
   }
 }
-
 
 
 .clear-img-overlay {

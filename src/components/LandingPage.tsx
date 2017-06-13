@@ -1,13 +1,19 @@
 
 
 import * as React from 'react'
+import YouTube from 'react-youtube'
 
 import WorldMap from './WorldMap'
 import ImgOverlay from './ImgOverlay'
 import Carousel from './Carousel'
 import CarouselTile from './CarouselTile'
 
+import { connect, Dispatch } from 'react-redux'
+import { ReduxState, ReduxStateUser, iSessionType } from '../reducer'
+import { Actions as A } from '../reduxActions'
 
+
+import { Line, Circle } from 'rc-progress';
 
 import * as CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import * as gsap from 'gsap'
@@ -17,14 +23,44 @@ import 'styles/LandingPage.scss'
 
 
 
-export default class LandingPage extends React.Component<any, any> {
+interface DispatchProps {
+  updateSessionId(sessionId: string)?: Dispatch<A>
+}
+interface StateProps {
+  youtubeURL: string
+  session: iSessionType
+  whoWillWin: {
+    [index: string]: number
+  }
+  nbaTeams: {
+    teamName: string
+    teamLogo: string
+  }
+}
+interface ReactProps {
+  data?: any
+}
+
+
+
+
+class LandingPage extends React.Component<StateProps & DispatchProps & ReactProps, any> {
 
   state = {
     category: 'games'
+    youtubeOptions: {
+      height: (window.innerWidth - (180 + 360)) * 2/3,
+      width: window.innerWidth - (180 + 360),
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    }
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('resize', this.handleResize)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -34,59 +70,93 @@ export default class LandingPage extends React.Component<any, any> {
     return true
   }
 
-  setCategory = (category: string): void => {
-    this.setState({ category: category })
-  }
-
-  languageNav = (): JSX.Element => {
-    return (
-      <div className="content-categories">
-        <p className='categories' onClick={() => this.setCategory("games")}><a>Games</a></p>
-        <span className='categories'>—</span>
-        <p className='categories' onClick={() => this.setCategory("news")}><a>News</a></p>
-        <span className='categories'>—</span>
-        <p className='categories' onClick={() => this.setCategory("vod")}><a>VOD: Live Streams</a></p>
-      </div>
-    )
-  }
-
   handleScroll = (event) => {
     console.info('scroll', event)
   }
 
+  handleResize = () => {
+    this.setState((state) => {
+      return {
+        youtubeOptions: {
+          height: (window.innerWidth - (180 + 360)) * 2/3,
+          width: window.innerWidth - (180 + 360),
+          playerVars: { autoplay: 1 }
+        }
+      }
+    }
+  }
+
+  handleClick = (sessionId: string) => {
+    this.props.updateSessionId(sessionId)
+  }
+
+  handleVote = (teamName: string) => {
+    this.props.dispatch({
+      type: A.User.VOTE_FOR_TEAM,
+      payload: { ...this.props.whoWillWin, [teamName]: this.props.whoWillWin[teamName] + 5 }
+    })
+  }
+
+
   render() {
+    let props = this.props
+    let totalVotes = props.whoWillWin[props.session.teams[0]] + props.whoWillWin[props.session.teams[1]]
     return (
       <div className='hero-outer-container'>
         <div className='hero-container'>
-          { this.languageNav() }
 
-          <div className="cn-cover cn-cover--withimage js-cn-cover"
-            style={{ backgroundImage: "url(https://static-cdn.jtvnw.net/jtv_user_pictures/twitch-profile_banner-6936c61353e4aeed-480.png)"}}>
+          <div className="cn-cover cn-cover--withimage js-cn-cover">
           </div>
 
+
           <div className="landing-page-listings-container">
-            <div className='landing-page-listings-flex'>
-              <ImgOverlay src={require("../img/game2.jpg")}
-                title="Overwatch"
-                subtitle="Multiplayer Online Battler"
-                players={["PinkEye", "Urgoz"]}
+            <div className='twitch-container'>
+              <YouTube
+                videoId={this.props.youtubeURL}
+                opts={this.state.youtubeOptions}
               />
-              {/* <ImgOverlay src={require("../img/game3.jpg")} */}
-              {/*   title="World of Warcraft" */}
-              {/*   subtitle="HearthStone" */}
-              {/*   players={["TheLastTauren", "Nerchio"]} */}
-              {/* /> */}
-              <ImgOverlay src={require("../img/game4.jpg")}
-                title="GTA V"
-                subtitle="Capture the Hill"
-                players={["Vinny El Capo", "Don Donburry"]}
-              />
-              {/* <ImgOverlay src={require("../img/game5.jpg")} */}
-              {/*   title="Destiny" */}
-              {/*   subtitle="Bungie Jump" */}
-              {/*   players={["TLO", "Day98"]} */}
-              {/* /> */}
+              {/* <iframe */}
+              {/*    src="https://clips.twitch.tv/embed?clip=IncredulousAbstemiousFennelImGlitch" */}
+              {/*    height="360" */}
+              {/*    width="640" */}
+              {/*    frameBorder="0" */}
+              {/*    scrolling="no" */}
+              {/*    allowFullScreen="true"> */}
+              {/* </iframe> */}
             </div>
+
+            {/* <ImgOverlay src={require("../img/game2.jpg")} */}
+            {/*   title="Overwatch" */}
+            {/*   subtitle="Multiplayer Online Battler" */}
+            {/*   players={["PinkEye", "Urgoz"]} */}
+            {/* /> */}
+            {/* <ImgOverlay src={require("../img/game3.jpg")} */}
+            {/*   title="World of Warcraft" */}
+            {/*   subtitle="HearthStone" */}
+            {/*   players={["TheLastTauren", "Nerchio"]} */}
+            {/* /> */}
+          </div>
+        </div>
+
+        <div className="landing-page-listings-container">
+          <div className='main-container2'>
+            <img className="teamLogo" src={props.nbaTeams[props.session.teams[0]].teamLogo}
+              onClick={() => this.handleVote(props.session.teams[0])}
+            />
+            <img className="teamLogo" src={props.nbaTeams[props.session.teams[1]].teamLogo}
+              onClick={() => this.handleVote(props.session.teams[1])}
+            />
+          </div>
+          <div className='main-container3'>
+            <h2>WHO WILL WIN</h2>
+          </div>
+          <div className='main-container3 percentage_votes'>
+            <h2>
+              <span>{"%"}</span>{ String(props.whoWillWin[props.session.teams[0]] / totalVotes * 100).slice(0,4) }
+            </h2>
+            <h2>
+              <span>{"%"}</span>{ String(props.whoWillWin[props.session.teams[1]] / totalVotes * 100).slice(0,4) }
+            </h2>
           </div>
         </div>
 
@@ -95,11 +165,11 @@ export default class LandingPage extends React.Component<any, any> {
             <div className='landing-page-listings-flex'>
               <Carousel className='prediction__listings__carousel'>
               {(
-                [4,5,6,7,8,9,10,11,1 ].map((n, i) => {
+                [9,10,11,1,2,3,4,5,6,7,8,9,10].map((n, i) => {
                   return (
                     <CarouselTile key={i}
-                      onClick={() => this.gotoPredictionLocation(p.house)}
-                      img={require(`../img/game${n}.jpg`)}
+                      onClick={() => this.handleClick(String(i+1))}
+                      img={require(`../img/pic${n}.jpg`)}
                     >
                       <div>Cool</div>
                       <div>Beans</div>
@@ -118,4 +188,28 @@ export default class LandingPage extends React.Component<any, any> {
 
 
 
+const mapStateToProps = ( state: ReduxState ): ReduxStateUser => {
+  return {
+    youtubeURL: state.reduxUser.sessions[state.reduxUser.currentSessionId].youtubeURL,
+    session: state.reduxUser.sessions[state.reduxUser.currentSessionId],
+    whoWillWin: state.reduxUser.sessions[state.reduxUser.currentSessionId].whoWillWin
+    nbaTeams: state.reduxUser.nbaTeams,
+  }
+}
 
+const mapDispatchToProps = ( dispatch ) => {
+  return {
+    updateUserGQL: (userGQL: userGQL) => dispatch(
+      { type: A.User.USER_GQL, payload: userGQL }
+    ),
+    updateSessionId: (sessionId: string) => dispatch(
+      { type: A.User.SWITCH_SESSION, payload: sessionId }
+    ),
+    dispatch: dispatch
+  }
+}
+
+export default connect<StateProps, DispatchProps, ReactProps>(
+  mapStateToProps,
+  mapDispatchToProps,
+)( LandingPage )

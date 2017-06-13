@@ -1,20 +1,28 @@
 
 
 $duration: 400ms;
-$tileHeight: 240px;
-$tileWidth: 160px;
 $iconSize: 50px;
 $growFactor: 1.1; // 1.3 times the original size
+
+// Vertical
+// $tileHeight: 240px;
+// $tileWidth: 160px;
+// $carousel-height: 300px;
+// Horizontal
+$tileWidth: 240px;
+$tileHeight: 160px;
+$carousel-height: 200px;
 
 $moveLeft: -($tileWidth * ($growFactor - 1) / 2);
 $moveRight: ($tileWidth * ($growFactor - 1) / 1);
 
 
-$carousel-height: 300px;
-$primary-color: #96616B;
+// $primary-color: #96616B;
+$primary-color: #ccc;
 // $primary-color: #1BD1C1;
 // $slider-color: #F8BD7F;
-$slider-color: #96616B;
+// $slider-color: #96616B;
+$slider-color: #ddd;
 
 // hide scrollbar
 ::-webkit-scrollbar {

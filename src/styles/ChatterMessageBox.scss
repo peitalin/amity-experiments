@@ -108,14 +108,14 @@ $blanched-almond: #FFEAD0;
       transform: rotateY(180deg);
     }
     .text-bubble {
-      background-color: #b2e281;
+      background-color: lighten(#B8B3E9, 10%);
       transform: rotateY(180deg);
 
       &:before {
         right: inherit;
         left: 100%;
         border-right-color: transparent;
-        border-left-color: #b2e281;
+        border-left-color: lighten(#B8B3E9, 10%);
       }
       .upvote, .downvote {
         display: none;

@@ -57,13 +57,17 @@ class ChatterTextBox extends React.Component<StateProps & DispatchProps & ReactP
 
   componentDidMount() {
     setTimeout(() => {
-      let msg: iMessageType = { content: 'Hey are you there? Wanna hear something funny?', userSelf: false, date: new Date()}
+      let msg: iMessageType = { content: 'Hey are you there? Wanna hear something funny?', userName: 'Joe_Rogan', date: new Date()}
       this.props.updateMessages(msg)
     }, 1100)
     setTimeout(() => {
-      let msg: iMessageType = { content: 'OI!!!!!!!!', userSelf: false, date: new Date()}
+      let msg: iMessageType = { content: 'OI!!!!!!!!', userName: 'Joe_Rogan', date: new Date()}
       this.props.updateMessages(msg)
     }, 6000)
+    setTimeout(() => {
+      let msg: iMessageType = { content: 'GET BCK HERE AND LISTEN TO MEE!!!!!!!', userName: 'Chael_P', date: new Date()}
+      this.props.updateMessages(msg)
+    }, 9000)
 
   }
 

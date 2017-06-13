@@ -39,12 +39,25 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
     console.info(event)
   }
 
+  setCategory = (category: string): void => {
+    this.setState({ category: category })
+  }
+
   render() {
     let { pathname } = this.props.location
     return (
       <nav id="nav-bar" className="navigation-bar">
         <Link className="menu-item" to='/'>Home</Link>
         <Link className="menu-item" to='/news'>News</Link>
+
+        <div className="content-categories">
+          <p className='categories' onClick={() => this.setCategory("games")}><a>Games</a></p>
+          <span className='categories'>—</span>
+          <p className='categories' onClick={() => this.setCategory("news")}><a>News</a></p>
+          <span className='categories'>—</span>
+          <p className='categories' onClick={() => this.setCategory("vod")}><a>VOD: Live Streams</a></p>
+        </div>
+
         <div className="Nav__upvotes">
           Upvotes: <span>{ this.props.upvotes }</span>
         </div >

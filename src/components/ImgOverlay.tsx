@@ -75,10 +75,6 @@ export default class ImgOverlay extends React.Component<ImgOverlayProps, any> {
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
-              <br/>
-              <p>
-            Amet porro corporis excepturi in id. Ea excepturi debitis dolorum dicta maiores? Perferendis eum consectetur esse obcaecati neque soluta, perferendis. Alias eos asperiores quia itaque sunt? Alias vitae error laudantium
-              </p>
             </div>
           </div>
         )}
