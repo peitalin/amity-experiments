@@ -101,7 +101,13 @@ class ChatterMessageBox extends React.Component<DispatchProps & StateProps & Rea
   render() {
     return (
       <div className="chatter__messagebox">
-      <div className="chatter__forum_thread"><h2>Forum Thread</h2></div>
+      <div className="chatter__forum_thread">
+        <h2>Forum Thread:
+          &nbsp;<span>{this.props.session.teams[0]}</span>
+          &nbsp;<span>vs.</span>
+          &nbsp;<span>{this.props.session.teams[1]}</span>
+        </h2>
+      </div>
       {(
         this.props.session.messages.map((msg, i) => {
           return (

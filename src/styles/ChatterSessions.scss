@@ -1,7 +1,7 @@
 
 // $primary-color: #96616B;
 $primary-color: #ccc;
-$border-color: #222;
+$border-color: #444;
 // $border-color: #D17B88;
 $highlight-color: #222;
 
@@ -92,12 +92,14 @@ $highlight-color: #222;
 
 
 .forum-thread.name {
+  width: 0%;
   display: none;
   opacity: 0;
   color: #222;
 
   &.active-thread {
     display: block;
+    width: 100%;
     opacity: 1;
     color: #222;
     padding-bottom: 5px;

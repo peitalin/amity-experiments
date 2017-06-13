@@ -9,13 +9,14 @@ $slider-color: #ccc;
 
 .hero-outer-container {
   max-width: calc(100vw - 360px); // 360px chatbox width
+  background-color: #222;
 }
 
 .cn-cover.cn-cover--withimage {
   background-image: url(https://static-cdn.jtvnw.net/jtv_user_pictures/twitch-profile_banner-6936c61353e4aeed-480.png);
-  background-color: #eee;
+  background-color: #222;
   background-position: top left;
-  background-repeat: repeat;
+  background-repeat: repeat repeat;
   background-size: cover;
   // filter: hue-rotate(90deg);
   // filter: grayscale(100%) contrast(100%);
@@ -40,7 +41,7 @@ $slider-color: #ccc;
 
 .hero-container {
   padding-top: 50px;
-  background-color: #f8f8f8;
+  background-color: #222;
   max-width: calc(100vw - 180px - 360px); // 360px is width of chat, 180px width of sidebar
   // -webkit-animation: slideAnim 0.6s cubic-bezier(0.7,0,0.2,1) both;
   // animation: slideAnim 0.6s cubic-bezier(0.7,0,0.2,1) both;

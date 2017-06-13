@@ -30,9 +30,15 @@ $primary-color:#96616B;
   width: 90%;
   height: 90px;
   background-color: #f1f1f1;
-  border-top: solid 2px #ddd;
+  border: solid 2px #B8B3E9;
   display: flex;
   justify-content: center;
+  transition: border 0.2s ease;
+
+  &:active, &:hover {
+    border: solid 2px darken(#B8B3E9, 10%);
+    transition: border 0.2s ease;
+  }
 
   textarea {
     font-size: 1rem;

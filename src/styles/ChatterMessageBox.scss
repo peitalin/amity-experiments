@@ -5,7 +5,19 @@ $blanched-almond: #FFEAD0;
   padding: 40px 15px 25px 15px;
   height: calc(100vh - 50px - 144px); /* 50px is the navbar height, 100px is the textbox height */
   overflow-y: scroll;
-  background-color: rgba(255,255,255, 0.5);
+  background-color: rgba(215,215,215, 0.6);
+
+  .chatter__forum_thread {
+    background-color: #444;
+    padding: 5px;
+    margin: 0 0 10px 0px;
+
+    h2 {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
 
   ul {
     display: flex;
@@ -34,7 +46,7 @@ $blanched-almond: #FFEAD0;
       font-size: 12px;
       color: #fff;
       border-radius: 2px;
-      background-color: #dcdcdc;
+      background-color: #bbb;
     }
   }
 
@@ -82,7 +94,7 @@ $blanched-almond: #FFEAD0;
 
     .upvote {
       font-size: 16px;
-      color: #1BD1C1;
+      color: #F8BD7F;
       position: absolute;
       right: 4px;
       bottom: 20px;

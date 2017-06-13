@@ -39,7 +39,6 @@ class ChatterSessions extends React.Component<StateProps & DispatchProps & React
   }
 
   render() {
-    console.info(this.props.sessionId)
     return (
       <div className="chatter-list">
         <input className="search" type="text" placeholder="Find a Forum Thread" onKeyUp={this.onKeyUp}></input>

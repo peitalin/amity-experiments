@@ -2,6 +2,7 @@
 
 import { ActionType, Actions } from './reduxActions'
 import { userGQL, geoData, iPrediction } from './typings/interfaceDefinitions'
+import { TweenLite } from 'gsap'
 
 
 ///// Grand Redux State Shape ////////
@@ -219,6 +220,12 @@ export const reduxReducerUser = (
     state: ReduxStateUser = initialReduxStateUser,
     action: ActionType
   ): ReduxStateUser => {
+
+  // TweenLite.from('.chatter__messagebox', 1, {
+  //   x: 300,
+  //   ease: Elastic.easeOut.config(1, 1)
+  // })
+
 
   let A = Actions.User
   switch ( action.type ) {

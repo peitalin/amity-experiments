@@ -86,8 +86,11 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
     }
   }
 
-  handleClick = (sessionId: string) => {
-    this.props.updateSessionId(sessionId)
+  handleClick = (sessionId: number) => {
+    let numSessions = 4
+    // mod 4, sincethere's only 4 sessions, so that carousel img > 4 will
+    // redirect to session 1, 2, 3, 4
+    this.props.updateSessionId(String(sessionId % numSessions + 1))
   }
 
   handleVote = (teamName: string) => {
@@ -115,14 +118,6 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
                 videoId={this.props.youtubeURL}
                 opts={this.state.youtubeOptions}
               />
-              {/* <iframe */}
-              {/*    src="https://clips.twitch.tv/embed?clip=IncredulousAbstemiousFennelImGlitch" */}
-              {/*    height="360" */}
-              {/*    width="640" */}
-              {/*    frameBorder="0" */}
-              {/*    scrolling="no" */}
-              {/*    allowFullScreen="true"> */}
-              {/* </iframe> */}
             </div>
 
             {/* <ImgOverlay src={require("../img/game2.jpg")} */}
@@ -160,6 +155,7 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
           </div>
         </div>
 
+
         <div className='hero-container'>
           <div className="landing-page-listings-container fixed--carousel">
             <div className='landing-page-listings-flex'>
@@ -168,7 +164,7 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
                 [9,10,11,1,2,3,4,5,6,7,8,9,10].map((n, i) => {
                   return (
                     <CarouselTile key={i}
-                      onClick={() => this.handleClick(String(i+1))}
+                      onClick={() => this.handleClick(i+1)}
                       img={require(`../img/pic${n}.jpg`)}
                     >
                       <div>Cool</div>
