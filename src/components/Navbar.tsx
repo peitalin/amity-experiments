@@ -48,7 +48,7 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
     return (
       <nav id="nav-bar" className="navigation-bar">
         <Link className="menu-item" to='/'>Home</Link>
-        <Link className="menu-item" to='/news'>News</Link>
+        <Link className="menu-item" to='/News'>News</Link>
 
         <div className="content-categories">
           <p className='categories' onClick={() => this.setCategory("games")}><a>Games</a></p>

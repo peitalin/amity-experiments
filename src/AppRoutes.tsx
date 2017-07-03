@@ -31,6 +31,7 @@ const LandingPage = asyncComponent({ loader: () => System.import('./components/L
 const Navbar = asyncComponent({ loader: () => System.import('./components/Navbar.tsx') })
 const Parallax = asyncComponent({ loader: () => System.import('./components/Parallax.tsx') })
 const Chat = asyncComponent({ loader: () => System.import('./components/Chat.tsx') })
+const News = asyncComponent({ loader: () => System.import('./components/News.tsx') })
 
 
 export default class AppRoutes extends React.Component {
@@ -40,8 +41,9 @@ export default class AppRoutes extends React.Component {
       <HashRouter>
         <div>
           <Route path="/" component={ Navbar } />
-          <Route path="/" component={ LandingPage } />
-          <Route path="/" component={ Chat } />
+          <Route exact path="/" component={ LandingPage } />
+          <Route exact path="/" component={ Chat } />
+          <Route path="/News" component={ News } />
         </div>
       </HashRouter>
     )

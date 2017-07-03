@@ -268,6 +268,14 @@ export const reduxReducerUser = (
         }
       }
 
+    case "PING":
+      console.info("PING")
+      return state
+
+    case "PONG":
+      console.info("PONG")
+      return state
+
     default: {
       return state
     }

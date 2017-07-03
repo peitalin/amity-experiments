@@ -20,6 +20,8 @@ import * as gsap from 'gsap'
 
 import 'styles/LandingPage.scss'
 
+import * as Rxjs from 'rxjs'
+
 
 
 
@@ -61,6 +63,12 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
+
+    var button = document.getElementById('butt')
+    Rxjs.Observable.fromEvent(button, 'click').subscribe(() => {
+      console.log('from OBSERVABLE!')
+    })
+
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -111,7 +119,6 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
           <div className="cn-cover cn-cover--withimage js-cn-cover">
           </div>
 
-
           <div className="landing-page-listings-container">
             <div className='twitch-container'>
               <YouTube
@@ -132,6 +139,8 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
             {/* /> */}
           </div>
         </div>
+
+        <button id="butt" style={{ position: 'fixed', zIndex: 11, top: 0, left 0 }}>button</button>
 
         <div className="landing-page-listings-container">
           <div className='main-container2'>
