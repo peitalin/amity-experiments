@@ -593,7 +593,7 @@ a[disabled] {
   background-color: #fff5ea;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -605,6 +605,7 @@ a[disabled] {
 .Nav__userprofile {
   color: #444;
   font-size: 1rem;
+  margin-right: 1rem;
 }
 
 .Nav__upvotes {
@@ -1077,4 +1078,15 @@ a[disabled] {
 
 .news__corp__api__img {
   max-height: 400px;
+}
+
+.load-stories-button {
+  padding: 10px;
+  background-color: #01B788;
+  transition: background-color 0.2s;
+}
+
+.load-stories-button:hover {
+  background-color: #68D351;
+  transition: background-color 0.2s;
 }
