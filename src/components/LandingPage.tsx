@@ -3,7 +3,6 @@
 import * as React from 'react'
 import YouTube from 'react-youtube'
 
-import WorldMap from './WorldMap'
 import ImgOverlay from './ImgOverlay'
 import Carousel from './Carousel'
 import CarouselTile from './CarouselTile'
@@ -174,7 +173,7 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
                   return (
                     <CarouselTile key={i}
                       onClick={() => this.handleClick(i+1)}
-                      img={require(`../img/pic${n}.jpg`)}
+                      img={require(`../img/pic${n}_compressed.jpg`)}
                     >
                       <div>Cool</div>
                       <div>Beans</div>

@@ -11,3 +11,14 @@
 .news__corp__api__img {
   max-height: 400px;
 }
+
+.load-stories-button {
+  padding: 10px;
+  background-color: #01B788;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #68D351;
+    transition: background-color 0.2s;
+  }
+}

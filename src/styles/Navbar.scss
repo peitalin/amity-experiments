@@ -16,7 +16,7 @@ $secondary-color: #444;
   background-color: lighten($primary-color, 5%);
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 
   a {
@@ -30,6 +30,7 @@ $secondary-color: #444;
 .Nav__userprofile {
   color: $secondary-color;
   font-size: 1rem;
+  margin-right: 1rem;
 }
 
 .Nav__upvotes {

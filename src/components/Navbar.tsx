@@ -47,25 +47,29 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
     let { pathname } = this.props.location
     return (
       <nav id="nav-bar" className="navigation-bar">
-        <Link className="menu-item" to='/'>Home</Link>
-        <Link className="menu-item" to='/News'>News</Link>
 
         <div className="content-categories">
-          <p className='categories' onClick={() => this.setCategory("games")}><a>Games</a></p>
+          <p className='categories'>
+            <Link className="menu-item" to='/'>Home</Link>
+          </p>
           <span className='categories'>—</span>
-          <p className='categories' onClick={() => this.setCategory("news")}><a>News</a></p>
+          <p className='categories'>
+            <Link className="menu-item" to='/News'>News</Link>
+          </p>
           <span className='categories'>—</span>
-          <p className='categories' onClick={() => this.setCategory("vod")}><a>VOD: Live Streams</a></p>
+          <p className='categories' onClick={() => this.setCategory("Galleries")}>
+            <a>Galleries</a>
+          </p>
+          <span className='categories'>—</span>
+          <p className='categories' onClick={() => this.setCategory("collections")}>
+            <a>Collections</a>
+          </p>
         </div>
 
-        <div className="Nav__upvotes">
-          Upvotes: <span>{ this.props.upvotes }</span>
-        </div >
-        <div className="Nav__downvotes">
-          Downvotes: <span>{ this.props.downvotes }</span>
-        </div>
         <div className="Nav__userprofile">
-          Username: <span>{ this.props.username }</span>
+          <p className='categories' onClick={() => this.setCategory("collections")}>
+            Username: <a><span>{ this.props.username }</span></a>
+          </p>
         </div>
 
       </div>
