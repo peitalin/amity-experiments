@@ -6,10 +6,11 @@ import { ReduxStateUser, ReduxState } from '../reducer'
 
 import { Link, withRouter, Location, Redirect } from 'react-router-dom'
 
-import { slide as Menu } from 'react-burger-menu'
-
 
 import 'styles/Navbar.scss'
+
+import AppBar from 'material-ui/AppBar';
+
 
 
 
@@ -52,23 +53,19 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
           <p className='categories'>
             <Link className="menu-item" to='/'>Home</Link>
           </p>
-          <span className='categories'>—</span>
           <p className='categories'>
             <Link className="menu-item" to='/News'>News</Link>
           </p>
-          <span className='categories'>—</span>
-          <p className='categories' onClick={() => this.setCategory("Galleries")}>
-            <a>Galleries</a>
-          </p>
-          <span className='categories'>—</span>
-          <p className='categories' onClick={() => this.setCategory("collections")}>
-            <a>Collections</a>
+          <p className='categories'>
+            <Link className="menu-item" to='/Collections'>Collections</Link>
           </p>
         </div>
 
-        <div className="Nav__userprofile">
+        <div className="Nav__userprofile content-categories">
           <p className='categories' onClick={() => this.setCategory("collections")}>
-            Username: <a><span>{ this.props.username }</span></a>
+            <Link className="menu-item" to='/Collections'>
+              Username: <span>{ this.props.username }</span>
+            </Link>
           </p>
         </div>
 

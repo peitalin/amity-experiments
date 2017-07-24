@@ -1,0 +1,62 @@
+
+
+$white: #fff;
+$blue: #37505C;
+$dark-blue: #37505C;
+$grey: #575757;
+$light-grey: #D0D0D0;
+$med-grey:#9F9DA3;
+$off-white: #F9F9F9;
+
+$heart: #D17B88;
+$dark-heart: #96616B;
+$orange: #F8BD7F;
+
+$small-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
+$med-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+$big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
+
+
+.regen {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  align-items: center;
+
+  .regen__pip {
+    color: #96616B;
+    margin-right: 1px;
+    font-size: 0.8rem;
+  }
+
+  .regen__text {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #96616B;
+    margin-left: 5px;
+  }
+
+  $items: 6;
+  @for $i from 1 through $items {
+    .triangle:nth-child(#{$i}) {
+      // animation: blink 2s infinite;
+      // $delay: $i * 0.2s;
+      // animation-delay: $delay;
+      transform: rotate($i * 30deg);
+    }
+  }
+
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

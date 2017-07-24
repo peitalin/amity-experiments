@@ -9,6 +9,9 @@ import 'styles/AppRoutes.scss'
 import { SpinnerRectangle } from './components/Spinners'
 import Loadable from 'react-loadable'
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MyAwesomeReactComponent from './MyAwesomeReactComponent';
+
 //////// Lazy-loading Components by Route /////////
 export const asyncComponent = ({ loader }) => {
   return (
@@ -20,7 +23,7 @@ export const asyncComponent = ({ loader }) => {
           : null
         return isLoading
           ? delayLoadingComponent
-          : (<div style={{ position: 'fixed', top:10, right: 10 }}>asyncComponent Error! Component failed to load</div>)
+          : (<div style={{ position: 'fixed', top: 10, right: 10 }}>asyncComponent Error! Component failed to load</div>)
       },
       delay: 200, // show loader only after 200ms
     })
@@ -32,20 +35,25 @@ const Navbar = asyncComponent({ loader: () => System.import('./components/Navbar
 const Parallax = asyncComponent({ loader: () => System.import('./components/Parallax.tsx') })
 const Chat = asyncComponent({ loader: () => System.import('./components/Chat.tsx') })
 const News = asyncComponent({ loader: () => System.import('./components/News.tsx') })
+const Collections = asyncComponent({ loader: () => System.import('./components/Collections.tsx') })
+
 
 
 export default class AppRoutes extends React.Component {
 
   render () {
     return (
-      <HashRouter>
-        <div>
-          <Route path="/" component={ Navbar } />
-          <Route exact path="/" component={ LandingPage } />
-          <Route exact path="/" component={ Chat } />
-          <Route path="/News" component={ News } />
-        </div>
-      </HashRouter>
+      <MuiThemeProvider>
+        <HashRouter>
+          <div>
+            <Route path="/" component={ Navbar } />
+            <Route exact path="/" component={ LandingPage } />
+            <Route exact path="/" component={ Chat } />
+            <Route path="/News" component={ News } />
+            <Route path="/Collections" component={ Collections } />
+          </div>
+        </HashRouter>
+      </MuiThemeProvider>
     )
   }
 }

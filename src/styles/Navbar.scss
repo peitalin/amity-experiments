@@ -1,16 +1,25 @@
 
 $navy: #37505C;
-$primary-color: #FFEAD0;
+$primary-color: #f1f1f1;
 // $primary-color: #1BD1C1;
 // $slider-color: #F8BD7F;
-$secondary-color: #444;
+$secondary-color: #666;
+
+
+$white: #fff;
+$blue: #0275D8;
+$grey: #575757;
+$light-grey: #D0D0D0;
+$med-grey:#9F9DA3;
+$off-white: #F9F9F9;
+
 
 
 .navigation-bar {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 5;
   width: 100vw;
   height: 50px;
   background-color: lighten($primary-color, 5%);
@@ -18,6 +27,14 @@ $secondary-color: #444;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  // hover box shadows
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  // transition: all 0.3s cubic-bezier(.85,-0.2,0,1.7);
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
+  }
 
   a {
     color: $secondary-color;
@@ -30,16 +47,7 @@ $secondary-color: #444;
 .Nav__userprofile {
   color: $secondary-color;
   font-size: 1rem;
-  margin-right: 1rem;
-}
-
-.Nav__upvotes {
-  color: #77c058;
-  font-size: 1rem;
-}
-.Nav__downvotes {
-  color: #D17B88;
-  font-size: 1rem;
+  margin-right: 5px;
 }
 
 .content-categories {
@@ -47,21 +55,31 @@ $secondary-color: #444;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 40px;
 
   z-index: 1;
   background-color: darken($primary-color, 5%);
   left: calc(50vw - 300px); // 300px width of chatbox
-  padding: 10px;
+  padding: 10px 0;
+  margin-left: 5px;
 
-  animation: fadeInLanguages 1s cubic-bezier(0.6,0,0.4,1);
-  animation-delay: 0.5s;
+  animation: fadeInLanguages 0.5s cubic-bezier(.85,-0.2,0,1.7);
+
+  // hover box shadows
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  // transition: all 0.3s cubic-bezier(.85,-0.2,0,1.7);
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
+  }
 
   .categories {
     margin: 0 0.2rem;
+
     a {
       color: $secondary-color;
       font-size: 1rem;
+      padding: 5px;
     }
     a:hover {
       color: #D4AFDF;

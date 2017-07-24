@@ -1,0 +1,73 @@
+
+
+$white: #fff;
+$blue: #37505C;
+$dark-blue: #37505C;
+$grey: #575757;
+$light-grey: #D0D0D0;
+$med-grey:#9F9DA3;
+$off-white: #F9F9F9;
+
+$heart: #D17B88;
+// $heart:RGBA(209, 123, 136, 1.00)
+$dark-heart: #96616B;
+$orange: #F8BD7F;
+
+
+$small-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
+$med-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+$big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
+
+.manabar {
+  display: flex;
+  flex-direction: row;
+  background: $dark-heart;
+  padding: 1%;
+  height: 100%;
+  width: fit-content;
+  border-radius: 2px;
+
+  // hover box shadows
+  box-shadow: $small-shadow;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  &:hover {
+    box-shadow: $med-shadow;
+  }
+
+  -webkit-transform: skew(30deg);
+     -moz-transform: skew(30deg);
+       -o-transform: skew(30deg);
+
+  .parallelogram {
+    width: 20px;
+    height: 20px;
+    margin-left: 2px;
+    // -webkit-transform: skew(30deg);
+    //    -moz-transform: skew(30deg);
+    //      -o-transform: skew(30deg);
+
+    // hover box shadows
+    box-shadow: $med-shadow;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    &:hover {
+      box-shadow: $big-shadow;
+    }
+  }
+
+  .filled {
+    background: $heart;
+
+    &:hover {
+      background: lighten($heart, 15%);
+    }
+  }
+
+  .unfilled {
+    background: RGBA(209, 123, 136, 0.1);
+
+    &:hover {
+      background: lighten($heart, 15%);
+    }
+  }
+}
+
