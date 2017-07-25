@@ -53,8 +53,6 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
     setInterval(() => {
       this.getETA()
     }, 1000)
-
-
   }
 
 
