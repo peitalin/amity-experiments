@@ -27,8 +27,8 @@ class Collections extends Component<ReduxProps & ReduxDispatchProps & ReactProps
     let demoDate2 = new Date('27 July 2017 03:30:00 GMT+10:00')
     let demoDate3 = new Date('28 July 2017 03:30:00 GMT+10:00')
 
-    let size = 200
-    let size2 = 250
+    let size = 180
+    let size2 = 240
     let size3 = 300
     return (
       <div className="collections__container">
@@ -38,47 +38,87 @@ class Collections extends Component<ReduxProps & ReduxDispatchProps & ReactProps
         <RegenBar regenPips={5} style={{ marginTop: '4px' }}/>
         <div className='countdown-timers-container'>
 
-          <CountdownTimer id="timer1"
-            height={size}
-            width={size}
-            date={demoDate1}
-            holdDuration={500}
-            countdownDays={4}
-            onHoldComplete={() => alert("KUDOS")}
-          />
-          <CountdownTimer id="timer2"
-            height={size}
-            width={size}
-            date={demoDate2}
-            holdDuration={500}
-            countdownDays={4}
-            onHoldComplete={() => alert("KUDOS")}
-          />
-          <CountdownTimer id="timer3"
-            height={size}
-            width={size}
-            date={demoDate1}
-            holdDuration={500}
-            countdownDays={4}
-            onHoldComplete={() => alert("KUDOS")}
-          />
+          <div className='video-card-container'>
+            <div className='video-card'>
+              <CountdownTimer id="timer1"
+                height={size}
+                width={size}
+                date={demoDate1}
+                holdDuration={500}
+                countdownDays={4}
+                onHoldComplete={() => alert("KUDOS")}
+              />
+              <h2 style={{ padding: 10 }}>30/50 Spots</h2>
+            </div>
+          </div>
 
-          <CountdownTimer id="timer4"
-            height={size2}
-            width={size2}
-            date={demoDate1}
-            holdDuration={500}
-            countdownDays={4}
-            onHoldComplete={() => alert("KUDOS")}
-          />
-          <CountdownTimer id="timer5"
-            height={size2}
-            width={size2}
-            date={demoDate2}
-            holdDuration={500}
-            countdownDays={4}
-            onHoldComplete={() => alert("KUDOS")}
-          />
+          <div className='video-card-container'>
+            <div className='video-card'>
+              <CountdownTimer id="timer2"
+                height={size}
+                width={size}
+                date={demoDate2}
+                holdDuration={500}
+                countdownDays={4}
+                onHoldComplete={() => alert("KUDOS")}
+              />
+              <h2 style={{ padding: 10 }}>30/50 Spots </h2>
+            </div>
+          </div>
+          <div className='video-card-container'>
+            <div className='video-card'>
+              <CountdownTimer id="timer3"
+                height={size}
+                width={size}
+                date={demoDate1}
+                holdDuration={500}
+                countdownDays={4}
+                onHoldComplete={() => alert("KUDOS")}
+              />
+              <h2 style={{ padding: 10 }}>30/50 Spots</h2>
+            </div>
+          </div>
+
+          <div className='video-card-container'>
+            <div className='video-card'>
+              <CountdownTimer id="timer4"
+                height={size2}
+                width={size2}
+                date={demoDate1}
+                holdDuration={500}
+                countdownDays={4}
+                onHoldComplete={() => alert("KUDOS")}
+              />
+              <h2 style={{ padding: 10 }}>30/50 Spots</h2>
+            </div>
+          </div>
+          <div className='video-card-container'>
+            <div className='video-card'>
+              <CountdownTimer id="timer5"
+                height={size2}
+                width={size2}
+                date={demoDate2}
+                holdDuration={500}
+                countdownDays={4}
+                onHoldComplete={() => alert("KUDOS")}
+              />
+              <h2 style={{ padding: 10 }}>30/50 Spots </h2>
+            </div>
+          </div>
+
+          <div className='video-card-container'>
+            <div className='video-card'>
+              <CountdownTimer id="timer8"
+                height={size3}
+                width={size3}
+                date={demoDate1}
+                holdDuration={500}
+                countdownDays={4}
+                onHoldComplete={() => alert("KUDOS")}
+              />
+            </div>
+          </div>
+
 
         </div>
 

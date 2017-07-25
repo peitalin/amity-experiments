@@ -22,7 +22,7 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
   padding: 10%;
   background-color: #f1f1f1;
   width: 100%;
-  height: 100vh;
+  height: 150vh;
 }
 
 .countdown-timers-container {
@@ -32,3 +32,37 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
   justify-content: space-around;
 }
 
+.video-card-container {
+  background-color: #dedede;
+  box-shadow: $med-shadow;
+  border-radius: 2px;
+  padding: 10px;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  transition: all 0.5s ease;
+  height: fit-content;
+  flex-grow: 1;
+
+  &:hover {
+    box-shadow: $big-shadow;
+  }
+}
+
+.video-card {
+  background-color: #f1f1f1;
+  border: 1px #ddd solid;
+  box-shadow: $med-shadow;
+  border-radius: 2px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  transition: all 0.5s ease;
+
+  &:hover {
+    box-shadow: $big-shadow;
+  }
+}

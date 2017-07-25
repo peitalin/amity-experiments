@@ -39,7 +39,7 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     border-radius: 100%;
     z-index: 2;
 
@@ -82,12 +82,12 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
       background-color: darken($heart, 20%);
 
       .subscribed-text {
-        font-size: 1.1rem;
+        font-size: 1rem;
         // color: lighten($blue, 20%);
         color: $off-white;
       }
       .unsubscribed-text {
-        font-size: 1.1rem;
+        font-size: 1rem;
         // color: lighten($heart, 20%);
         color: $off-white;
       }
@@ -133,22 +133,21 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-right: 20px solid $grey;
-  border-left: 10px solid transparent;
-  height: 40px;
+  border-left: 15px solid transparent;
+  // height: 40px;
   width: 0px;
   position: absolute;
   // transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
   &.filled {
-    border-right: 20px solid $blue;
+    border-right: 15px solid $blue;
     filter: drop-shadow( -2px -2px 0px #444 );
   }
   &.filled:hover {
-    border-right: 20px solid lighten($blue, 10%);
+    // border-right: 20px solid lighten($blue, 10%);
   }
-
   &.unfilled {
-    border-right: 20px solid rgba(0,0,0,0.2);
+    border-right: 15px solid rgba(0,0,0,0.2);
   }
   &.unfilled:hover {
     // border-right: 20px solid lighten($blue, 10%);
