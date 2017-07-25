@@ -15,6 +15,8 @@ interface ReactProps {
   holdDuration: number
   date: Date()
   countdownDays: number
+  height: number
+  width: number
 }
 interface ReactState {
   totalms: number
@@ -24,6 +26,7 @@ interface ReactState {
   mousedown: boolean
   subscribed: boolean
 }
+
 
 class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactProps, ReactState> {
 
@@ -50,12 +53,21 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
     setInterval(() => {
       this.getETA()
     }, 1000)
+
+
   }
+
 
   componentDidMount() {
     let timer = document.getElementById(this.props.id)
     timer.onmousedown = this.onMouseDown
     window.addEventListener("mouseup", this.onMouseUp)
+
+    let traps = document.getElementById(`${this.props.id}_container`).getElementsByClassName('trapezoid')
+    Array.prototype.map.call(traps, (domElem, i) => {
+      domElem.style.transform = `rotate(${i * -18 - 60}deg) translateX(${Math.floor(this.props.height/2.4)}px)`;
+    })
+
   }
 
   onMouseDown = () => {
@@ -95,12 +107,10 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
   }
 
   getETA = () => {
-    let a = this.props.date
-
     let millisecondsInHours = 1000*60*60
     let millisecondsInMinutes = 1000*60
     let millisecondsInSeconds = 1000
-    let deltaT = a - Date.now()
+    let deltaT = this.props.date - Date.now()
 
     let hours = Math.floor(deltaT / millisecondsInHours).toString()
     let minutes = Math.floor(deltaT % millisecondsInHours / millisecondsInMinutes).toString()
@@ -118,12 +128,18 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
 
   render() {
     let countDown = this.props.countdownDays * 24 * 60 * 60 * 1000 // days to milliseconds
-    let numPipsFilled = Math.floor(20 * (1 -  this.state.ETA.totalms/countDown ) )
+    let numPipsFilled = Math.floor(20 * (1 -  this.state.ETA.totalms/countDown))
     let numPipsUnfilled = Math.ceil(20 * (this.state.ETA.totalms/countDown))
 
     return (
-      <div className="countdown_timer">
-        <div id={this.props.id} className={"timer disable-select"}>
+      <div id={`${this.props.id}_container`} className="countdown_timer"
+        style={{ height: this.props.height, width: this.props.width, flexBasis: this.props.height }}
+      >
+
+        <div id={this.props.id}
+          className={"timer disable-select"}
+          style={{ height: Math.floor(this.props.height/1.55), width: Math.floor(this.props.width/1.55) }}
+        >
           <div className="time">
             <span>
               {( `${this.state.ETA.hours}:` )}
@@ -148,21 +164,21 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
         </div>
         {
           Array.from(Array(numPipsFilled).keys()).map(n =>
-            <div key={n} className="trapezoid filled">{  }</div>
+            <div key={n} className="trapezoid filled"
+              style={{ height: this.props.height * 0.14 }}>
+            </div>
           )
         }
         {
           Array.from(Array(numPipsUnfilled).keys()).map(n =>
-            <div key={n} className="trapezoid unfilled">{  }</div>
+            <div key={n} className="trapezoid unfilled"
+              style={{ height: this.props.height * 0.14 }}>
+            </div>
           )
         }
       </div>
     )
   }
 }
-
-
-
-
 
 export default CountdownTimer

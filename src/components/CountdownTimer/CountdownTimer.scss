@@ -16,10 +16,13 @@ $med-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
 $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
 
 
+
 .countdown_timer {
   transition: all 0.2s cubic-bezier(.85,-0.2,0,1.7);
   height: 280px;
   width: 280px;
+  flex-basis: 30%;
+  // flex-basis: 280px;
 
   display: flex;
   flex-direction: column;
@@ -36,16 +39,16 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     border-radius: 100%;
     z-index: 2;
 
     .subscribed-text {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: darken($blue, 20%);
     }
     .unsubscribed-text {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: darken($heart, 20%);
     }
   }
@@ -61,7 +64,8 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
   $items: 22;
   @for $i from 1 through $items {
     .trapezoid:nth-child(#{$i}) {
-      transform: rotate($i * -18deg - 60deg) translateX(120px);
+      // transform: rotate($i * -18deg - 60deg) translateX(100px);
+      // do this with javascript
       transition-delay: $i * 0.01s;
     }
   }
@@ -74,15 +78,18 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
       color: $off-white;
       background-color: $heart;
       filter: drop-shadow( 4px 4px 4px #000 );
-      transform: scale(0.8);
+      transform: scale(0.9);
       background-color: darken($heart, 20%);
+
       .subscribed-text {
         font-size: 1.1rem;
-        color: lighten($blue, 20%);
+        // color: lighten($blue, 20%);
+        color: $off-white;
       }
       .unsubscribed-text {
         font-size: 1.1rem;
-        color: lighten($heart, 20%);
+        // color: lighten($heart, 20%);
+        color: $off-white;
       }
     }
 
@@ -100,12 +107,12 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
 
     .trapezoid {
       // box-shadow: $med-shadow;
-      height: 50px;
-      width: 60px;
+      // height: 50px;
+      // width: 60px;
       // turns trapezoids into arrows on hover
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
-      border-right: 120px solid $heart;
+      // border-top: 20px solid transparent;
+      // border-bottom: 20px solid transparent;
+      // border-right: 120px solid $heart;
     }
 
     @for $i from 1 through $items {
