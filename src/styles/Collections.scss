@@ -22,66 +22,6 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
   padding: 10%;
   background-color: #f1f1f1;
   width: 100%;
-}
-
-.trap_container {
-  transform: translateX(300px) translateY(200px);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  transition-delay: 0.4s;
-  height: 100px;
-  width: 100px;
-
-  $items: 20;
-  @for $i from 1 through $items {
-    .trapezoid:nth-child(#{$i}) {
-      transform: rotate($i * -18deg) translateX(120px);
-    }
-  }
-
-
-  // hover box shadows
-  &:hover {
-    @for $i from 1 through $items {
-      .trapezoid:nth-child(#{$i}) {
-        transform: rotate($i * -24deg) translateX(140px);
-      }
-    }
-    .trapezoid {
-      // box-shadow: $med-shadow;
-      height: 50px;
-      width: 20px;
-    }
-  }
-}
-
-.trapezoid {
-  // border-top: 5px solid transparent;
-  // border-bottom: 5px solid transparent;
-  // border-right: 20px solid $grey;
-  // border-left: 10px solid transparent;
-
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-right: 20px solid $grey;
-  border-left: 10px solid transparent;
-  height: 40px;
-  width: 0px;
-  position: absolute;
-
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-
-  &.filled {
-    border-right: 20px solid $blue;
-  }
-  &.filled:hover {
-    border-right: 20px solid lighten($blue, 10%);
-  }
-
-  &.unfilled {
-    border-right: 20px solid rgba(0,0,0,0.2);
-  }
-  &.unfilled:hover {
-    border-right: 20px solid rgba(0,0,0,0.2);
-  }
+  height: 100vh;
 }
 

@@ -1,0 +1,152 @@
+
+$white: #fff;
+$blue: #64A3E5;
+$dark-blue: #37505C;
+$grey: #575757;
+$light-grey: #D0D0D0;
+$med-grey:#9F9DA3;
+$off-white: #F9F9F9;
+
+$heart: #D17B88;
+$dark-heart: #96616B;
+$orange: #F8BD7F;
+
+$small-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
+$med-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+$big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
+
+
+.countdown_timer {
+  transform: translateX(200px) translateY(200px);
+  transition: all 0.3s ease;
+  height: 180px;
+  width: 180px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .timer {
+    transition: all 0.1s ease;
+    transition-delay: 0.1s;
+    height: 180px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius: 100%;
+    z-index: 2;
+  }
+
+  .subscribe {
+    transition: all 0.1s ease;
+    transition-delay: 0.1s;
+    text-align: center;
+    z-index: 2;
+    opacity: 0.5;
+    padding: 5%;
+    font-size: 0.9rem;
+    border-radius: 4px;
+  }
+
+  $items: 22;
+  @for $i from 1 through $items {
+    .trapezoid:nth-child(#{$i}) {
+      transform: rotate($i * -18deg - 60deg) translateX(120px);
+      transition-delay: $i * 0.01s;
+    }
+    .trapezoid.filled:nth-child(#{$i}) {
+      transition-delay: $i * 0.01s;
+    }
+    .trapezoid.unfilled:nth-child(#{$i}) {
+      transition-delay: 0s;
+    }
+  }
+
+  &:hover {
+    .timer {
+      transition: all 0.2s ease;
+      transition-delay: 0.15s;
+      color: $off-white;
+      background-color: $heart;
+      filter: drop-shadow( 4px 4px 4px #000 );
+      transform: scale(0.8);
+      background-color: darken($heart, 20%);
+    }
+
+    .subscribe {
+      transition: all 0.2s ease;
+      transition-delay: 0.15s;
+      opacity: 1;
+      font-size: 1rem;
+      color: $off-white;
+    }
+
+    .mousedown {
+      transition: all 1s cubic-bezier(.85,-0.2,0,1.7);
+      transform: scale(0.6);
+      background-color: darken($blue, 20%);
+      filter: drop-shadow( 2px 2px 2px #000 );
+    }
+
+    .trapezoid {
+      // box-shadow: $med-shadow;
+      height: 50px;
+      width: 60px;
+      // turns trapezoids into arrows on hover
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-right: 120px solid $heart;
+    }
+
+    @for $i from 1 through $items {
+      .trapezoid:nth-child(#{$i}) {
+        transform: rotate($i * -24deg) translateX(0px);
+        opacity: 0;
+        &.unfilled {
+          border-right: 20px solid rgba(0,0,0,0);
+        }
+      }
+    }
+
+  }
+}
+
+
+.trapezoid {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 20px solid $grey;
+  border-left: 10px solid transparent;
+  height: 40px;
+  width: 0px;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+  &.filled {
+    border-right: 20px solid $blue;
+    filter: drop-shadow( -2px -2px 2px #000 );
+  }
+  &.filled:hover {
+    // border-right: 20px solid lighten($blue, 10%);
+  }
+
+  &.unfilled {
+    border-right: 20px solid rgba(0,0,0,0.2);
+  }
+  &.unfilled:hover {
+    // border-right: 20px solid lighten($blue, 10%);
+  }
+}
+
+
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
