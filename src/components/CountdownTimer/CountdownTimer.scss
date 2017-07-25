@@ -17,10 +17,9 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
 
 
 .countdown_timer {
-  transform: translateX(200px) translateY(200px);
-  transition: all 0.3s ease;
-  height: 180px;
-  width: 180px;
+  transition: all 0.2s cubic-bezier(.85,-0.2,0,1.7);
+  height: 280px;
+  width: 280px;
 
   display: flex;
   flex-direction: column;
@@ -30,7 +29,7 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
 
   .timer {
     transition: all 0.1s ease;
-    transition-delay: 0.1s;
+    transition-delay: 0s;
     height: 180px;
     width: 180px;
     display: flex;
@@ -40,14 +39,20 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
     font-size: 1.5rem;
     border-radius: 100%;
     z-index: 2;
+
+    .subscribed-text {
+      font-size: 1.1rem;
+      color: darken($blue, 20%);
+    }
+    .unsubscribed-text {
+      font-size: 1.1rem;
+      color: darken($heart, 20%);
+    }
   }
 
   .subscribe {
-    transition: all 0.1s ease;
-    transition-delay: 0.1s;
     text-align: center;
     z-index: 2;
-    opacity: 0.5;
     padding: 5%;
     font-size: 0.9rem;
     border-radius: 4px;
@@ -59,15 +64,10 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
       transform: rotate($i * -18deg - 60deg) translateX(120px);
       transition-delay: $i * 0.01s;
     }
-    .trapezoid.filled:nth-child(#{$i}) {
-      transition-delay: $i * 0.01s;
-    }
-    .trapezoid.unfilled:nth-child(#{$i}) {
-      transition-delay: 0s;
-    }
   }
 
   &:hover {
+
     .timer {
       transition: all 0.2s ease;
       transition-delay: 0.15s;
@@ -76,14 +76,19 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
       filter: drop-shadow( 4px 4px 4px #000 );
       transform: scale(0.8);
       background-color: darken($heart, 20%);
+      .subscribed-text {
+        font-size: 1.1rem;
+        color: lighten($blue, 20%);
+      }
+      .unsubscribed-text {
+        font-size: 1.1rem;
+        color: lighten($heart, 20%);
+      }
     }
 
-    .subscribe {
-      transition: all 0.2s ease;
-      transition-delay: 0.15s;
-      opacity: 1;
-      font-size: 1rem;
-      color: $off-white;
+    .subscribed {
+      transition-delay: 0s;
+      background-color: darken($blue, 20%);
     }
 
     .mousedown {
@@ -150,3 +155,5 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
   -ms-user-select: none;
   user-select: none;
 }
+
+

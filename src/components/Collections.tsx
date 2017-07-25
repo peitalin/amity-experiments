@@ -23,14 +23,35 @@ class Collections extends Component<ReduxProps & ReduxDispatchProps & ReactProps
   }
 
   render() {
-    let demoDate = new Date('27 July 2017 13:30:00 GMT+10:00')
+    let demoDate1 = new Date('26 July 2017 13:30:00 GMT+10:00')
+    let demoDate2 = new Date('27 July 2017 03:30:00 GMT+10:00')
+    let demoDate3 = new Date('28 July 2017 03:30:00 GMT+10:00')
     return (
       <div className="collections__container">
         <br/>
 
         <ManaBar height={20} width={20} percentage={0.7}/>
         <RegenBar regenPips={5} style={{ marginTop: '4px' }}/>
-        <CountdownTimer date={demoDate} holdDuration={500} onHoldComplete={() => alert("KUDOS")} />
+        <div className='countdown-timers-container'>
+          <CountdownTimer id="timer1"
+            date={demoDate1}
+            holdDuration={500}
+            countdownDays={4}
+            onHoldComplete={() => alert("KUDOS")}
+          />
+          <CountdownTimer id="timer1"
+            date={demoDate2}
+            holdDuration={500}
+            countdownDays={4}
+            onHoldComplete={() => alert("KUDOS")}
+          />
+          <CountdownTimer id="timer1"
+            date={demoDate3}
+            holdDuration={500}
+            countdownDays={4}
+            onHoldComplete={() => alert("KUDOS")}
+          />
+        </div>
 
       </div>
     )

@@ -14,19 +14,20 @@ interface ReactProps {
   onHoldComplete?(any): void
   holdDuration: number
   date: Date()
+  countdownDays: number
 }
 interface ReactState {
   totalms: number
-  hours: number
-  minutes: number
-  seconds: number
+  hours: string
+  minutes: string
+  seconds: string
   mousedown: boolean
+  subscribed: boolean
 }
 
 class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactProps, ReactState> {
 
   state = {
-    initTimer: 0,
     ETA: {
       totalms: 0,
       hours: 0,
@@ -34,40 +35,63 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
       seconds: 0,
     },
     mousedown: false,
+    subscribed: false,
+    timerID: null,
   }
 
-  componentDidMount() {
-    let timer = document.getElementById('timer')
-    timer.onmousedown = this.onMouseDown
-    window.addEventListener("mouseup", this.onMouseUp)
+  static defaultProps = {
+    countdownDays: 7,
+    date: Date.now() * 2,
+  }
 
+  componentWillMount() {
+    this.getETA()
     // update timer every second
     setInterval(() => {
       this.getETA()
     }, 1000)
   }
 
+  componentDidMount() {
+    let timer = document.getElementById(this.props.id)
+    timer.onmousedown = this.onMouseDown
+    window.addEventListener("mouseup", this.onMouseUp)
+  }
+
   onMouseDown = () => {
-    let timer = document.getElementById('timer')
+    let timer = document.getElementById(this.props.id)
+    timer.className = timer.className.replace(' subscribed', '')
     timer.className += ' mousedown'
     this.setState({
-      initTimer: Date.now(),
       mousedown: true,
+      subscribed: false,
+    })
+
+    // set timeout to detect mousedown hold
+    let timerID = setTimeout(() => {
+      if ( this.state.mousedown ) {
+        this.setState({
+          subscribed: true,
+        })
+        timer.className += ' subscribed'
+        // this.props.onHoldComplete()
+      }
+    }, this.props.holdDuration)
+    // get a reference to this particular timeout
+    this.setState({
+      timerID: timerID,
     })
   }
 
   onMouseUp = () => {
-    let timer = document.getElementById('timer')
+    let timer = document.getElementById(this.props.id)
     timer.className = timer.className.replace(' mousedown', '')
+    // clear previous setTimeout
+    clearTimeout(this.state.timerID)
     this.setState({
-      initTimer: Date.now(),
       mousedown: false,
+      timerID: undefined,
     })
-
-    if ((Date.now() - this.state.initTimer) > this.props.holdDuration) {
-      // need to hold down button X ms before onHoldComplete will fire
-      this.props.onHoldComplete()
-    }
   }
 
   getETA = () => {
@@ -78,23 +102,28 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
     let millisecondsInSeconds = 1000
     let deltaT = a - Date.now()
 
-    let hours = Math.floor(deltaT / millisecondsInHours)
-    let minutes = Math.floor(deltaT % millisecondsInHours / millisecondsInMinutes)
-    let seconds = Math.floor(deltaT % millisecondsInHours % millisecondsInMinutes / millisecondsInSeconds)
+    let hours = Math.floor(deltaT / millisecondsInHours).toString()
+    let minutes = Math.floor(deltaT % millisecondsInHours / millisecondsInMinutes).toString()
+    let seconds = Math.floor(deltaT % millisecondsInHours % millisecondsInMinutes / millisecondsInSeconds).toString()
 
     this.setState({
-      ETA: { totalms: deltaT, hours, minutes, seconds }
+      ETA: {
+        totalms: deltaT,
+        hours: hours.length < 2 ? `0${hours}` : hours,
+        minutes: minutes.length < 2 ? `0${minutes}` : minutes,
+        seconds: seconds.length < 2 ? `0${seconds}` : seconds,
+      }
     })
   }
 
   render() {
-    let countDown = 168 * 60 * 60 * 1000 // 168 hrs (7days) in milliseconds
+    let countDown = this.props.countdownDays * 24 * 60 * 60 * 1000 // days to milliseconds
     let numPipsFilled = Math.floor(20 * (1 -  this.state.ETA.totalms/countDown ) )
     let numPipsUnfilled = Math.ceil(20 * (this.state.ETA.totalms/countDown))
 
     return (
       <div className="countdown_timer">
-        <div id='timer' className="timer disable-select">
+        <div id={this.props.id} className={"timer disable-select"}>
           <div className="time">
             <span>
               {( `${this.state.ETA.hours}:` )}
@@ -106,7 +135,16 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
               {( `${this.state.ETA.seconds}` )}
             </span>
           </div>
-          <div className="subscribe">Hold to Subscribe!</div>
+          <div className="subscribe">
+            {(
+              this.state.subscribed
+              ? <div className="subscribed-text">Subscribed</div>
+              : <div className="unsubscribed-text">
+                  Unsubscribed
+                  <div style={{ fontSize: '0.9rem' }}>Hold to Subscribe</div>
+                </div>
+            )}
+          </div>
         </div>
         {
           Array.from(Array(numPipsFilled).keys()).map(n =>
