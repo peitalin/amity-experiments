@@ -6,8 +6,8 @@ import * as className from 'classnames'
 import 'styles/ChatterMessageBox.scss'
 
 import { connect, Dispatch } from 'react-redux'
-import { ReduxState, ReduxStateUser, iSessionType, iMessageType } from '../reducer'
-import { userGQL } from '../typings/interfaceDefinitions'
+import { ReduxStateFoxSports, ReduxStateUserFoxSports, iSessionType, iMessageType } from '../../redux/reducerFoxSports'
+import { userGQL } from '../../typings/interfaceDefinitionsFoxSports'
 
 import { TweenLite, TweenMax } from 'gsap'
 import * as swearjar from 'swearjar'
@@ -142,12 +142,12 @@ class ChatterMessageBox extends React.Component<DispatchProps & StateProps & Rea
 }
 
 
-const mapStateToProps = ( state: ReduxState ) => {
+const mapStateToProps = ( state: ReduxStateFoxSports ) => {
   return {
-    session: state.reduxUser.sessions[state.reduxUser.currentSessionId],
-    myUserProfile: state.reduxUser.userGQL,
-    users: state.reduxUser.users,
-    lastMessage: state.reduxUser.sessions[state.reduxUser.currentSessionId].messages.slice(-1)[0]
+    session: state.reduxUserFoxSports.sessions[state.reduxUserFoxSports.currentSessionId],
+    myUserProfile: state.reduxUserFoxSports.userGQL,
+    users: state.reduxUserFoxSports.users,
+    lastMessage: state.reduxUserFoxSports.sessions[state.reduxUserFoxSports.currentSessionId].messages.slice(-1)[0]
   }
 }
 export default connect<StateProps, DispatchProps, ReactProps>(

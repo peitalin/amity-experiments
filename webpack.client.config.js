@@ -18,6 +18,8 @@ if (isProduction) {
       'process.env.NODE_ENV': JSON.stringify('production'),
       ONSERVER: false,
     }),
+    // webpack 3: scope hoisting (faster js evaluation)
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new ExtractTextPlugin({
       filename: "styles.css", // output css file with same name as the entry point.
       allChunks: true,
@@ -57,6 +59,8 @@ if (isProduction) {
       'process.env.NODE_ENV': JSON.stringify('development'),
       ONSERVER: false,
     }),
+    // webpack 3: scope hoisting (faster js evaluation)
+    new webpack.optimize.ModuleConcatenationPlugin(),
     // new webpack.HotModuleReplacementPlugin(),
     // enable HMR globally, do NOT use with webpack-dev-server --hot, applied twice
     new webpack.NamedModulesPlugin(),
@@ -81,7 +85,7 @@ const config = {
     : [
       'react-hot-loader/patch',
       // activate HMR for React
-      'webpack-dev-server/client?http://localhost:9999',
+      'webpack-dev-server/client?http://localhost:3333',
       // bundle the client for webpack-dev-server
       // and connect to the provided endpoint
       'webpack/hot/only-dev-server',
@@ -101,7 +105,7 @@ const config = {
   // Enable sourcemaps for debugging webpack's output.
   devtool: isProduction ? false : 'source-map',
   devServer: {
-      port: 9999,
+      port: 3333,
       hot: true,
       contentBase: path.resolve(__dirname, 'dist'),
       // match the output path
@@ -112,8 +116,6 @@ const config = {
   resolve: {
     extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
     alias: {
-      // 'mapbox-gl': path.resolve(__dirname, 'node_modules/mapbox-gl/dist/mapbox-gl.js'),
-      'mapbox-gl': path.resolve(__dirname, 'node_modules/mapbox-gl'),
       'styles': path.resolve(__dirname, 'src', 'styles'),
     },
     modules: [
@@ -140,7 +142,6 @@ const config = {
   // in order to ignore built-in modules like path, fs, etc.
 
   module: {
-    noParse: /(mapbox-gl)\.js$/,
     rules: [
       {
         test: function (fpath) {
@@ -183,17 +184,6 @@ const config = {
             'css-loader?sourceMap',
             'resolve-url-loader',
             'sass-loader'
-          ]
-        })
-      },
-      {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader?sourceMap',
-            'resolve-url-loader',
-            'less-loader'
           ]
         })
       },

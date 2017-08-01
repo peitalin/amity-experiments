@@ -2,8 +2,8 @@
 import * as React from 'react'
 
 import { connect, Dispatch } from 'react-redux'
-import { ReduxState, ReduxStateUser, iSessionType, iAllSessions } from '../reducer'
-import { Actions as A } from '../reduxActions'
+import { ReduxStateFoxSports, ReduxStateUserFoxSports, iSessionType, iAllSessions } from '../../redux/reducerFoxSports'
+import { Actions as A } from '../../redux/reduxActionsFoxSports'
 
 import * as className from 'classnames'
 import 'styles/ChatterSessions.scss'
@@ -92,12 +92,12 @@ class ChatterSessions extends React.Component<StateProps & DispatchProps & React
 }
 
 
-const mapStateToProps = ( state: ReduxState ) => {
+const mapStateToProps = ( state: ReduxStateFoxSports ) => {
   return {
-    myUserProfile: state.reduxUser.userGQL,
-    sessions: state.reduxUser.sessions,
-    sessionId: state.reduxUser.currentSessionId,
-    nbaTeams: state.reduxUser.nbaTeams,
+    myUserProfile: state.reduxUserFoxSports.userGQL,
+    sessions: state.reduxUserFoxSports.sessions,
+    sessionId: state.reduxUserFoxSports.currentSessionId,
+    nbaTeams: state.reduxUserFoxSports.nbaTeams,
   }
 }
 

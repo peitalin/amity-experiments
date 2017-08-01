@@ -2,14 +2,12 @@
 
 import * as React from 'react'
 import { connect, MapStateToProps } from 'react-redux'
-import { ReduxStateUser, ReduxState } from '../reducer'
+import { ReduxStateUser, ReduxState } from '../redux/reducer'
 
 import { Link, withRouter, Location, Redirect } from 'react-router-dom'
 
 
 import 'styles/Navbar.scss'
-
-// import AppBar from 'material-ui/AppBar';
 
 
 
@@ -64,14 +62,6 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
           </p>
         </div>
 
-        {/* <div className="Nav__userprofile content-categories"> */}
-        {/*   <p className='categories' onClick={() => this.setCategory("collections")}> */}
-        {/*     <Link className="menu-item" to='/Collections'> */}
-        {/*       Username: <span>{ this.props.username }</span> */}
-        {/*     </Link> */}
-        {/*   </p> */}
-        {/* </div> */}
-        {/*  */}
       </div>
     )
   }
@@ -80,9 +70,9 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
 
 const mapStateToProps = ( state: ReduxState ): ReduxStateUser => {
   return {
-    upvotes: state.reduxUser.userGQL.upvotes,
-    downvotes: state.reduxUser.userGQL.downvotes
-    username: state.reduxUser.userGQL.username
+    upvotes: state.reduxUser.userProfile.upvotes,
+    downvotes: state.reduxUser.userProfile.downvotes,
+    username: state.reduxUser.userProfile.username,
   }
 }
 

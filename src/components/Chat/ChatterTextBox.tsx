@@ -1,8 +1,8 @@
 
 import * as React from 'react'
 import { connect, Dispatch } from 'react-redux'
-import { ReduxState, ReduxStateUser, iMessageType } from '../reducer'
-import { Actions as A } from '../reduxActions'
+import { ReduxState, ReduxStateUser, iMessageType } from '../../redux/reducerFoxSports'
+import { Actions as A } from '../../redux/reduxActionsFoxSports'
 
 import { userGQL } from '../typings/interfaceDefinitions'
 import 'styles/ChatterTextBox.scss'

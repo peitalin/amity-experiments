@@ -3,7 +3,7 @@ import * as React from 'react'
 import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
 import { connect } from 'react-redux'
-import { Actions } from '../reduxActions'
+import { Actions } from '../redux/reduxActions'
 
 import { userGQL } from '../typings/interfaceDefinitions'
 

@@ -1,15 +1,10 @@
 
 
 import * as React from 'react'
-import YouTube from 'react-youtube'
-
-import ImgOverlay from './ImgOverlay'
-import Carousel from './Carousel'
-import CarouselTile from './CarouselTile'
 
 import { connect, Dispatch } from 'react-redux'
 import { ReduxState, ReduxStateUser, iSessionType } from '../reducer'
-import { Actions as A } from '../reduxActions'
+import { Actions as A } from '../redux/reduxActions'
 import { iArticle } from '../typings/interfaceDefinitions'
 
 import gql from 'graphql-tag'
@@ -37,8 +32,6 @@ interface ReactState {
     status: string
   }
 }
-
-
 
 
 class NewsHunt extends React.Component<StateProps & DispatchProps & ReactProps, ReactState> {

@@ -11,7 +11,7 @@ import {
   iGetCollectionRetrieve,
   iNewsContentItem,
   iNewsStory,
-} from '../typings/interfaceDefinitions'
+} from '../../typings/interfaceDefinitionsCAPI'
 
 import NewsStory from './NewsStory'
 

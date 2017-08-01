@@ -5,7 +5,6 @@ import * as ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import AppRoutes from './AppRoutes'
 
-
 //// Graphql
 import { createBatchingNetworkInterface, ApolloClient } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
@@ -13,7 +12,8 @@ import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-trans
 //// Redux
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
-import { reduxReducerUser } from './reducer'
+import { reduxReducerUserFoxSports } from './redux/reducerFoxSports'
+import { reduxReducerUser } from './redux/reducer'
 //// Redux-persist
 import { getStoredState, createPersistor, persistStore, autoRehydrate } from 'redux-persist'
 // import localforage from 'localforage'
@@ -59,8 +59,6 @@ class AppApollo extends React.Component<any, AppApolloState> {
   state = { rehydrated: false }
 
   componentWillMount() {
-    // const GRAPHQL_PROJECT_ID = "cixfj2p7t5esw0111742t44e8"
-    // this.initApolloNetworkInterface(GRAPHQL_PROJECT_ID)
     this.persistReduxStore()
   }
 
@@ -72,6 +70,7 @@ class AppApollo extends React.Component<any, AppApolloState> {
       // const initialState = { apollo: { data: rehydratedState.apollo ? rehydratedState.apollo.data : {} }}
       let reduxStore = createStore(
         combineReducers({
+          reduxUserFoxSports: reduxReducerUserFoxSports,
           reduxUser: reduxReducerUser,
         }),
         persistState ? rehydratedState : {},
@@ -79,7 +78,6 @@ class AppApollo extends React.Component<any, AppApolloState> {
           this.registerReduxDevtools(),
         )
       );
-
       // this.clearStore(persistor)
       if (persistState) {
         const persistor = createPersistor(reduxStore, { storage: localforage })
@@ -119,11 +117,7 @@ class AppApollo extends React.Component<any, AppApolloState> {
         </div>
       )
     }
-    // return (
-    //   <Provider store={this.reduxStore}>
-    //     <AppRoutes />
-    //   </Provider>
-    // )
+    // react-apollo uses redux in the background
     return (
       <ApolloProvider store={this.reduxStore} client={apolloClient}>
         <AppRoutes />

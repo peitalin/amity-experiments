@@ -1,18 +1,16 @@
 
 
-import { ActionType, Actions } from './reduxActions'
-import { userGQL, geoData, iPrediction } from './typings/interfaceDefinitions'
-import { TweenLite } from 'gsap'
+import { ActionType, Actions } from './reduxActionsFoxSports'
 
 
 ///// Grand Redux State Shape ////////
-export interface ReduxState {
-  reduxUser: ReduxStateUser
+export interface ReduxStateFoxSports {
+  reduxUserFoxSports: ReduxStateUserFoxSports
 }
 /////////////
 
-export interface ReduxStateUser {
-  userGQL?: userGQL // my userprofile
+export interface ReduxStateUserFoxSports {
+  userGQL?: any // my userprofile
   users: {
     [index: string]: userGQL
   } // other user profiles
@@ -42,7 +40,7 @@ export interface iMessageType {
   date?: Date
 }
 
-const initialReduxStateUser: ReduxStateUser = {
+const initialReduxStateUser: ReduxStateUserFoxSports = {
   userGQL: {
     emailAddress: 'dana@ufc.com',
     username: 'Dana_White',
@@ -216,15 +214,10 @@ const initialReduxStateUser: ReduxStateUser = {
   },
 }
 
-export const reduxReducerUser = (
-    state: ReduxStateUser = initialReduxStateUser,
+export const reduxReducerUserFoxSports = (
+    state: ReduxStateUserFoxSports = initialReduxStateUser,
     action: ActionType
-  ): ReduxStateUser => {
-
-  // TweenLite.from('.chatter__messagebox', 1, {
-  //   x: 300,
-  //   ease: Elastic.easeOut.config(1, 1)
-  // })
+  ): ReduxStateUserFoxSports => {
 
 
   let A = Actions.User

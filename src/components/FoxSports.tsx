@@ -2,20 +2,12 @@
 
 import * as React from 'react'
 import YouTube from 'react-youtube'
-
-import ImgOverlay from './ImgOverlay'
+import CarouselTile from './Carousel/CarouselTile'
 import Carousel from './Carousel'
-import CarouselTile from './CarouselTile'
 
 import { connect, Dispatch } from 'react-redux'
-import { ReduxState, ReduxStateUser, iSessionType } from '../reducer'
-import { Actions as A } from '../reduxActions'
-
-
-import { Line, Circle } from 'rc-progress';
-
-import * as CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import * as gsap from 'gsap'
+import { ReduxStateFoxSports, ReduxStateUserFoxSports, iSessionType } from '../redux/reducerFoxSports'
+import { Actions as A } from '../redux/reduxActionsFoxSports'
 
 import 'styles/FoxSports.scss'
 
@@ -125,21 +117,10 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
                 opts={this.state.youtubeOptions}
               />
             </div>
-
-            {/* <ImgOverlay src={require("../img/game2.jpg")} */}
-            {/*   title="Overwatch" */}
-            {/*   subtitle="Multiplayer Online Battler" */}
-            {/*   players={["PinkEye", "Urgoz"]} */}
-            {/* /> */}
-            {/* <ImgOverlay src={require("../img/game3.jpg")} */}
-            {/*   title="World of Warcraft" */}
-            {/*   subtitle="HearthStone" */}
-            {/*   players={["TheLastTauren", "Nerchio"]} */}
-            {/* /> */}
           </div>
         </div>
 
-        <button id="butt" style={{ position: 'fixed', zIndex: 11, top: 0, left 0 }}>button</button>
+        <button id="butt" style={{ position: 'fixed', zIndex: 11, top: 50, right: 10 }}>button</button>
 
         <div className="landing-page-listings-container">
           <div className='main-container2'>
@@ -192,12 +173,12 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
 
 
 
-const mapStateToProps = ( state: ReduxState ): ReduxStateUser => {
+const mapStateToProps = ( state: ReduxStateFoxSports ) => {
   return {
-    youtubeURL: state.reduxUser.sessions[state.reduxUser.currentSessionId].youtubeURL,
-    session: state.reduxUser.sessions[state.reduxUser.currentSessionId],
-    whoWillWin: state.reduxUser.sessions[state.reduxUser.currentSessionId].whoWillWin
-    nbaTeams: state.reduxUser.nbaTeams,
+    youtubeURL: state.reduxUserFoxSports.sessions[state.reduxUserFoxSports.currentSessionId].youtubeURL,
+    session: state.reduxUserFoxSports.sessions[state.reduxUserFoxSports.currentSessionId],
+    whoWillWin: state.reduxUserFoxSports.sessions[state.reduxUserFoxSports.currentSessionId].whoWillWin,
+    nbaTeams: state.reduxUserFoxSports.nbaTeams,
   }
 }
 

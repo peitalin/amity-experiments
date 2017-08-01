@@ -9,9 +9,8 @@ import 'styles/AppRoutes.scss'
 import { SpinnerRectangle } from './components/Spinners'
 import Loadable from 'react-loadable'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-//////// Lazy-loading Components by Route /////////
+//////// Function to lazy-load route components /////////
 export const asyncComponent = ({ loader }) => {
   return (
     Loadable({
@@ -28,6 +27,8 @@ export const asyncComponent = ({ loader }) => {
     })
   )
 }
+//////// Lazy-loading Components by Route /////////
+// import route components as you normally would here.
 const Title = asyncComponent({ loader: () => System.import('./components/Title.tsx') })
 const LoginAuth0 = asyncComponent({ loader: () => System.import('./components/LoginAuth0.tsx') })
 const Navbar = asyncComponent({ loader: () => System.import('./components/Navbar.tsx') })
@@ -35,8 +36,8 @@ const Parallax = asyncComponent({ loader: () => System.import('./components/Para
 
 const NewsHunt = asyncComponent({ loader: () => System.import('./components/NewsHunt.tsx') })
 const FoxSports = asyncComponent({ loader: () => System.import('./components/FoxSports.tsx') })
-const Chat = asyncComponent({ loader: () => System.import('./components/Chat.tsx') })
-const CAPI = asyncComponent({ loader: () => System.import('./components/CAPI.tsx') })
+const Chat = asyncComponent({ loader: () => System.import('./components/Chat/index.tsx') })
+const CAPI = asyncComponent({ loader: () => System.import('./components/CAPI/index.tsx') })
 const Collections = asyncComponent({ loader: () => System.import('./components/Collections.tsx') })
 
 
@@ -52,20 +53,18 @@ export default class AppRoutes extends React.Component {
 
   render () {
     return (
-      <MuiThemeProvider>
-        <HashRouter>
-          <div>
-            <Route path="/" component={ Navbar } />
-            <Route path="/" component={ Login } />
-            <Route path="/" component={ NewsHunt } />
-            {/* <Route exact path="/" component={ Chat } /> */}
-            <Route exact path="/FoxSports" component={ FoxSports } />
-            <Route exact path="/FoxSports" component={ Chat } />
-            <Route path="/CAPI" component={ CAPI } />
-            <Route path="/Collections" component={ Collections } />
-          </div>
-        </HashRouter>
-      </MuiThemeProvider>
+      <HashRouter>
+        <div>
+          <Route path="/" component={ Navbar } />
+          <Route path="/" component={ Login } />
+          <Route exact path="/" component={ NewsHunt } />
+          {/* <Route exact path="/" component={ Chat } /> */}
+          <Route exact path="/FoxSports" component={ FoxSports } />
+          <Route exact path="/FoxSports" component={ Chat } />
+          <Route path="/CAPI" component={ CAPI } />
+          <Route path="/Collections" component={ Collections } />
+        </div>
+      </HashRouter>
     )
   }
 }
