@@ -23,13 +23,17 @@ class Collections extends Component<ReduxProps & ReduxDispatchProps & ReactProps
   }
 
   render() {
-    let demoDate1 = new Date('26 July 2017 13:30:00 GMT+10:00')
-    let demoDate2 = new Date('27 July 2017 03:30:00 GMT+10:00')
-    let demoDate3 = new Date('28 July 2017 03:30:00 GMT+10:00')
+    let demoDate1 = new Date('2 August 2017 13:30:00 GMT+10:00')
+    let demoDate2 = new Date('3 August 2017 03:30:00 GMT+10:00')
+    let demoDate3 = new Date('4 August 2017 03:30:00 GMT+10:00')
 
     let size = 180
     let size2 = 240
     let size3 = 300
+
+    // let size = window.innerWidth / 6
+    // let size2 = window.innerWidth / 4
+    // let size3 = window.innerWidth / 2
     return (
       <div className="collections__container">
         <br/>

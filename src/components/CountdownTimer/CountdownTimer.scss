@@ -73,13 +73,14 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
   &:hover {
 
     .timer {
-      transition: all 0.2s ease;
-      transition-delay: 0.15s;
+      transition: all .4s ease;
+      transition-delay: 0.1s;
       color: $off-white;
       background-color: $heart;
       filter: drop-shadow( 4px 4px 4px #000 );
       transform: scale(0.9);
       background-color: darken($heart, 20%);
+      // background-color: #F1F1F1;
 
       .subscribed-text {
         font-size: 1rem;
@@ -99,7 +100,7 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
     }
 
     .mousedown {
-      transition: all 1s cubic-bezier(.85,-0.2,0,1.7);
+      transition: all 1s cubic-bezier(.75,-0.4,0,1.7);
       transform: scale(0.6);
       background-color: darken($blue, 20%);
       filter: drop-shadow( 2px 2px 2px #000 );
@@ -118,7 +119,7 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
     @for $i from 1 through $items {
       .trapezoid:nth-child(#{$i}) {
         // transform: rotate($i * -24deg) translateX(0px);
-        opacity: 0;
+        opacity: 0.2;
         // &.unfilled {
         //   border-right: 20px solid rgba(0,0,0,0);
         // }
@@ -130,6 +131,7 @@ $big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
 
 
 .trapezoid {
+	transition: opacity 0.2s ease;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-right: 20px solid $grey;

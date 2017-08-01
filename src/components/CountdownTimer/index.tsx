@@ -132,8 +132,12 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
 
   render() {
     let countDown = this.props.countdownDays * 24 * 60 * 60 * 1000 // days to milliseconds
-    let numPipsFilled = Math.floor(20 * (1 - this.state.ETA.totalms/countDown))
-    let numPipsUnfilled = Math.ceil(20 * (this.state.ETA.totalms/countDown))
+    let numPipsFilled = ( this.state.ETA.totalms > 0 )
+      ? Math.floor(20 * (1 - this.state.ETA.totalms/countDown))
+      : 20
+    let numPipsUnfilled = ( this.state.ETA.totalms > 0 )
+      ? Math.ceil(20 * (this.state.ETA.totalms/countDown))
+      : 0
 
     return (
       <div id={`${this.props.id}_container`} className="countdown_timer"
