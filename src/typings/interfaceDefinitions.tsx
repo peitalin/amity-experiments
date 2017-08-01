@@ -145,3 +145,13 @@ export interface iReferences {
   originId: string
   referenceType: string
 }
+
+
+export interface iArticle {
+  author: string
+  description: string
+  publishedAt: string
+  title: string
+  url: string
+  urlToImage: string
+}

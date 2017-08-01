@@ -10,7 +10,6 @@ import { SpinnerRectangle } from './components/Spinners'
 import Loadable from 'react-loadable'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MyAwesomeReactComponent from './MyAwesomeReactComponent';
 
 //////// Lazy-loading Components by Route /////////
 export const asyncComponent = ({ loader }) => {
@@ -30,13 +29,23 @@ export const asyncComponent = ({ loader }) => {
   )
 }
 const Title = asyncComponent({ loader: () => System.import('./components/Title.tsx') })
-const LandingPage = asyncComponent({ loader: () => System.import('./components/LandingPage.tsx') })
+const LoginAuth0 = asyncComponent({ loader: () => System.import('./components/LoginAuth0.tsx') })
 const Navbar = asyncComponent({ loader: () => System.import('./components/Navbar.tsx') })
 const Parallax = asyncComponent({ loader: () => System.import('./components/Parallax.tsx') })
+
+const NewsHunt = asyncComponent({ loader: () => System.import('./components/NewsHunt.tsx') })
+const FoxSports = asyncComponent({ loader: () => System.import('./components/FoxSports.tsx') })
 const Chat = asyncComponent({ loader: () => System.import('./components/Chat.tsx') })
-const News = asyncComponent({ loader: () => System.import('./components/News.tsx') })
+const CAPI = asyncComponent({ loader: () => System.import('./components/CAPI.tsx') })
 const Collections = asyncComponent({ loader: () => System.import('./components/Collections.tsx') })
 
+
+const Login = (): JSX.Element => {
+  const clientId: string = 'uzVT8nCGaQwjyXC2QYyGCfsJOCn6Q61c'
+  const domain: string = 'peitalin.au.auth0.com'
+  const redirectUrl: string = '/Collections' // redirect to route on authentication
+  return <LoginAuth0 clientId={clientId} domain={domain} redirectOnAuth={redirectUrl}/>
+}
 
 
 export default class AppRoutes extends React.Component {
@@ -47,9 +56,12 @@ export default class AppRoutes extends React.Component {
         <HashRouter>
           <div>
             <Route path="/" component={ Navbar } />
-            <Route exact path="/" component={ LandingPage } />
-            <Route exact path="/" component={ Chat } />
-            <Route path="/News" component={ News } />
+            <Route path="/" component={ Login } />
+            <Route path="/" component={ NewsHunt } />
+            {/* <Route exact path="/" component={ Chat } /> */}
+            <Route exact path="/FoxSports" component={ FoxSports } />
+            <Route exact path="/FoxSports" component={ Chat } />
+            <Route path="/CAPI" component={ CAPI } />
             <Route path="/Collections" component={ Collections } />
           </div>
         </HashRouter>

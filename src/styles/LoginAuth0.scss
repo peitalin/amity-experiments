@@ -1,0 +1,89 @@
+
+$small-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
+$med-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+$big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
+
+.login-auth0 {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 6;
+}
+
+.login-auth0-loader {
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  width: 44px;
+  transition: width 0.6s ease-in-out;
+}
+.login-auth0-loader.login-loading {
+  width: 70px;
+  transition: width 0.6s ease-in-out;
+}
+.login-loading::after {
+  content: 'Loading';
+}
+.login-logged-in::after {
+  content: 'Log Out';
+}
+
+button#antd-login {
+  height: 32px;
+  border-radius: 0px;
+  border: 1px solid transparent;
+  border-color: lighten(#96616B, 10%);
+  background-color: #96616B;
+  color: #eee;
+  padding: 0px 15px;
+  touch-action: manipulation;
+  cursor: pointer;
+  box-shadow: $med-shadow;
+  transition: all 0.4s ease;
+
+  &:hover {
+    background-color: #d4afdf;
+    border-color: #d4afdf;
+    box-shadow: $big-shadow;
+  }
+}
+
+
+// CSS transitions
+// 1st time appearing
+$min-width: 0px;
+$max-width: 65px;
+.login-anim-fade-appear {
+  opacity: 0.01;
+  width: $min-width;
+}
+.login-anim-fade-appear.login-anim-fade-appear-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+  width: $max-width;
+  transition: width 200ms ease-in;
+}
+// entering
+.login-anim-fade-enter {
+  opacity: 0.01;
+  width: $min-width;
+}
+.login-anim-fade-enter.login-anim-fade-enter-active {
+  opacity: 1;
+  width: $max-width;
+  transition: opacity 200ms ease-in;
+  transition: width 200ms ease-in;
+}
+// leaving
+.login-anim-fade-leave {
+  opacity: 1;
+  width: $max-width;
+}
+.login-anim-fade-leave.login-anim-fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 200ms ease-in;
+  width: $min-width;
+  transition: width 200ms ease-in;
+}
+
+

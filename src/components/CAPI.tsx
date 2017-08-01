@@ -30,7 +30,7 @@ interface NewsState {
 const NewsCorpAPIKey = 'tkw8nw39njardwbvagepbeqk'
 
 
-class News extends React.Component<any, NewsState> {
+class CAPI extends React.Component<any, NewsState> {
 
   state = {
     getSearch: undefined,
@@ -43,8 +43,8 @@ class News extends React.Component<any, NewsState> {
 
   componentDidMount() {
     this.getSearch()
-    this.getRetrieve()
-    this.getCollectionSearch()
+    // this.getRetrieve()
+    // this.getCollectionSearch()
   }
 
 
@@ -198,7 +198,7 @@ class News extends React.Component<any, NewsState> {
                 {(
                   News.contentType === "NEWS_STORY" &&
                   <div className="news-story">
-                    <NewsStory/>
+                    <NewsStory News={News}/>
                     <br/>
                   </div>
                 )}
@@ -214,4 +214,4 @@ class News extends React.Component<any, NewsState> {
   }
 }
 
-export default News;
+export default CAPI;

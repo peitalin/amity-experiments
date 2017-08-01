@@ -19,12 +19,18 @@ interface ReactProps {
   width: number
 }
 interface ReactState {
-  totalms: number
-  hours: string
-  minutes: string
-  seconds: string
+  ETA: {
+    totalms: number
+    hours: string
+    minutes: string
+    seconds: string
+    mousedown: boolean
+    subscribed: boolean
+  }
   mousedown: boolean
   subscribed: boolean
+  timerID: any
+  setIntervalID: any
 }
 
 
@@ -40,6 +46,7 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
     mousedown: false,
     subscribed: false,
     timerID: null,
+    setIntervalID: null,
   }
 
   static defaultProps = {
@@ -50,9 +57,12 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
   componentWillMount() {
     this.getETA()
     // update timer every second
-    setInterval(() => {
+    let setIntervalID = setInterval(() => {
       this.getETA()
     }, 1000)
+    this.setState({
+      setIntervalID: setIntervalID
+    })
   }
 
 
@@ -65,7 +75,13 @@ class CountdownTimer extends Component<ReduxProps & ReduxDispatchProps & ReactPr
     Array.prototype.map.call(traps, (domElem, i) => {
       domElem.style.transform = `rotate(${i * -18 - 60}deg) translateX(${Math.floor(this.props.height/2.4)}px)`;
     })
+  }
 
+  componentWillUnmount() {
+    window.removeEventListener("mouseup", this.onMouseUp)
+    // remove timer and setinterval
+    window.clearInterval(this.state.setIntervalID)
+    window.clearTimeout(this.state.timerID)
   }
 
   onClick = () => {

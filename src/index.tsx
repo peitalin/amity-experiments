@@ -6,6 +6,10 @@ import { AppContainer } from 'react-hot-loader'
 import AppRoutes from './AppRoutes'
 
 
+//// Graphql
+import { createBatchingNetworkInterface, ApolloClient } from 'apollo-client'
+import { ApolloProvider } from 'react-apollo'
+import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws'
 //// Redux
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
@@ -15,6 +19,35 @@ import { getStoredState, createPersistor, persistStore, autoRehydrate } from 're
 // import localforage from 'localforage'
 import { SpinnerRectangle } from './components/Spinners'
 
+
+////// APOLLO GRAPHQL
+const GRAPHQL_PROJECT_ID = "cj5svyhxos1a001606r4jg8wj"
+const networkInterface = createBatchingNetworkInterface({
+  uri: `https://api.graph.cool/simple/v1/${GRAPHQL_PROJECT_ID}`,
+  batchInterval: 40
+});
+networkInterface.use([
+  {
+    applyBatchMiddleware: (req, next) => {
+      req.options.headers = (req.options.headers) ? req.options.headers : {}
+      req.options.headers.authorization = (window.localStorage.getItem('auth0IdToken'))
+        ? `Bearer ${window.localStorage.getItem('auth0IdToken')}`
+        : undefined // get authentication token from local storage if it exists
+      next()
+    }
+  }
+]);
+const wsClient = new SubscriptionClient(
+  `wss://subscriptions.graph.cool/v1/${GRAPHQL_PROJECT_ID}`,
+  { reconnect: true }
+);
+const apolloClient = new ApolloClient({
+  networkInterface: addGraphQLSubscriptions(networkInterface, wsClient),
+  dataIdFromObject: o => o.id, // enable object ID for better cacheing
+  queryDeduplication: true, // batch graphql queries
+  // initialState: initialState,
+  // reduxRootSelector: state => state.apollo,
+})
 
 
 interface AppApolloState {
@@ -86,10 +119,15 @@ class AppApollo extends React.Component<any, AppApolloState> {
         </div>
       )
     }
+    // return (
+    //   <Provider store={this.reduxStore}>
+    //     <AppRoutes />
+    //   </Provider>
+    // )
     return (
-      <Provider store={this.reduxStore}>
+      <ApolloProvider store={this.reduxStore} client={apolloClient}>
         <AppRoutes />
-      </Provider>
+      </ApolloProvider>
     )
   }
 }

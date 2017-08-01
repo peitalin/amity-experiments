@@ -1,0 +1,178 @@
+
+
+// $primary-color: #96616B;
+$primary-color: #ccc;
+// $primary-color: #1BD1C1;
+// $slider-color: #F8BD7F;
+// $slider-color: #96616B;
+$slider-color: #ccc;
+
+.hero-outer-container {
+  max-width: calc(100vw - 360px); // 360px chatbox width
+  background-color: #222;
+}
+
+.cn-cover.cn-cover--withimage {
+  background-image: url(https://static-cdn.jtvnw.net/jtv_user_pictures/twitch-profile_banner-6936c61353e4aeed-480.png);
+  background-color: #222;
+  background-position: top left;
+  background-repeat: repeat repeat;
+  background-size: cover;
+  // filter: hue-rotate(90deg);
+  // filter: grayscale(100%) contrast(100%);
+  height: calc(100vh - 50px);
+  width: 100%;
+  position: absolute;
+  animation: backChange 8s infinite;
+}
+
+@keyframes backChange {
+  0% {
+  filter: grayscale(100%) contrast(100%);
+  }
+  50% {
+  filter: grayscale(100%) contrast(110%);
+  }
+  100% {
+  filter: grayscale(100%) contrast(100%);
+  }
+}
+
+
+.hero-container {
+  padding-top: 50px;
+  background-color: #222;
+  max-width: calc(100vw - 180px - 360px); // 360px is width of chat, 180px width of sidebar
+  // -webkit-animation: slideAnim 0.6s cubic-bezier(0.7,0,0.2,1) both;
+  // animation: slideAnim 0.6s cubic-bezier(0.7,0,0.2,1) both;
+  // -webkit-animation-delay: 0.1s;
+  // animation-delay: 0.1s;
+}
+
+.hero-container .landing-page-header-container .landing-page-header {
+
+  div:first-child {
+    -webkit-animation: slideAnim 0.6s cubic-bezier(0.7,0,0.3,1) both;
+    animation: slideAnim 0.6s cubic-bezier(0.7,0,0.3,1) both;
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+  }
+
+  div:nth-child(2) {
+    -webkit-animation: slideAnim 0.5s cubic-bezier(0.7,0,0.3,1) both;
+    animation: slideAnim 0.5s cubic-bezier(0.7,0,0.3,1) both;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+
+  div:nth-child(3) {
+    -webkit-animation: slideAnim 0.4s cubic-bezier(0.7,0,0.3,1) both;
+    animation: slideAnim 0.4s cubic-bezier(0.7,0,0.3,1) both;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+  }
+}
+
+
+.twitch-container {
+  z-index: 1;
+  border-left: 2px solid $primary-color;
+  border-right: 2px solid $primary-color;
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+  margin: 5px;
+  padding: 5px;
+  background-color: rgba(22,22,22,0.8);
+
+  iframe {
+    max-width: calc(100vw - 180px - 360px - 24px); // 360px is width of chat, 180px width of sidebar
+  }
+}
+
+
+
+.landing-page-listings-container {
+  width: calc(100vw - 180px - 360px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 180px;
+}
+
+.landing-page-listings-container.fixed--carousel {
+  z-index: 5;
+  padding-top: 0px;
+  position: fixed;
+  bottom: 0;
+  width: calc(200vw - 360px - 720px);
+  transform: scale(0.5);
+  transform-origin: left bottom;
+  transition: transform 0.2s ease, width 0.4s;
+  // 0.4s width transition when expanding (carousel expands)
+
+  &:hover {
+    transform: scale(1);
+    width: calc(100vw - 180px - 360px); // 360px is width of chat, 180px width of sidebar
+    transition: transform 0.2s ease, width 0.15s;
+    // 0.2s width transition when shrinking (carousel shink)
+  }
+}
+
+
+.landing-page-listings-flex {
+  z-index: 1;
+  border-left: 2px solid $primary-color;
+  border-right: 2px solid $primary-color;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+$listings-width: 10rem;
+$listings-height: 15rem;
+
+.landing-page-listings {
+  border: 2px solid lighten($primary-color, 20%);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: $listings-width;
+  height: $listings-height;
+}
+
+
+.main-container2 {
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(22,22,22,0.8);
+  margin: 0px 5px 0px 5px;
+  padding: 0px 5px 0px 5px;
+}
+
+
+.main-container3 {
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(22,22,22,0.8);
+
+  h2 {
+    margin: 5px;
+  }
+
+  &.percentage_votes {
+    justify-content: space-around;
+  }
+}
+
+.teamLogo {
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+  }
+}

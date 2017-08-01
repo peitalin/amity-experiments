@@ -1,5 +1,20 @@
 
+$white: #fff;
+$blue: #64A3E5;
+$dark-blue: #37505C;
+$royal-blue: #5682A3;
+$grey: #575757;
+$light-grey: #D0D0D0;
+$med-grey:#9F9DA3;
+$off-white: #F9F9F9;
 
+$heart: #D17B88;
+$dark-heart: #96616B;
+$orange: #F8BD7F;
+
+$small-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.24);
+$med-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.24);
+$big-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.22);
 
 
 .fade-enter {
@@ -38,10 +53,6 @@
   transition: opacity 300ms ease-in;
 }
 
-
-[hidden] {
-  display: none;
-}
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -50,110 +61,55 @@
 *:after {
   box-sizing: border-box;
 }
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
-body {
-  font-family: "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.5;
-  color: rgba(0, 0, 0, 0.65);
-  background-color: #222;
-}
-body,
-div,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-pre,
-code,
-form,
-fieldset,
-legend,
-input,
-textarea,
-p,
-blockquote,
-th,
-td,
-hr,
-button,
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  margin: 0;
-  padding: 0;
-}
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-}
-ul,
-ol {
-  list-style: none;
-}
-input::-ms-clear,
-input::-ms-reveal {
-  display: none;
-}
-::-moz-selection {
-  background: #108ee9;
-  color: #fff;
-}
-::selection {
-  background: #108ee9;
-  color: #fff;
-}
-a {
-  color: #108ee9;
-  background: transparent;
-  text-decoration: none;
-  outline: none;
+
+button {
+  height: 32px;
+  border-radius: 0px;
+  border: 1px solid transparent;
+  border-color: lighten($blue, 10%);
+  background-color: $blue;
+  color: #eee;
+  padding: 0px 15px;
+  touch-action: manipulation;
   cursor: pointer;
-  transition: color .3s ease;
+  box-shadow: $med-shadow;
+  transition: all 0.4s ease;
+
+  &:hover {
+    background-color: $royal-blue;
+    border-color: $royal-blue;
+    box-shadow: $big-shadow;
+  }
 }
-a:focus {
-  text-decoration: underline;
-  -webkit-text-decoration-skip: ink;
-          text-decoration-skip: ink;
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #565A5C;
 }
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #AAADAD;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+input:focus {
+  outline-offset: 0px;
+  outline: none;
+  color: #E0BAF0;
+}
+
+
+a {
+  color: #96616B;
+}
+
 a:hover {
-  color: #49a9ee;
+  color: #D4AFDF;
 }
-a:active {
-  color: #0e77ca;
-}
-a:active,
-a:hover {
-  outline: 0;
-  text-decoration: none;
-}
-a[disabled] {
-  color: rgba(0, 0, 0, 0.25);
-  cursor: not-allowed;
-  pointer-events: none;
-}
+

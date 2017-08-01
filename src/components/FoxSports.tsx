@@ -17,7 +17,7 @@ import { Line, Circle } from 'rc-progress';
 import * as CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import * as gsap from 'gsap'
 
-import 'styles/LandingPage.scss'
+import 'styles/FoxSports.scss'
 
 import * as Rxjs from 'rxjs'
 
@@ -60,7 +60,7 @@ class LandingPage extends React.Component<StateProps & DispatchProps & ReactProp
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
+    // window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
 
     var button = document.getElementById('butt')

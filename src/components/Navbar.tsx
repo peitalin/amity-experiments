@@ -9,7 +9,7 @@ import { Link, withRouter, Location, Redirect } from 'react-router-dom'
 
 import 'styles/Navbar.scss'
 
-import AppBar from 'material-ui/AppBar';
+// import AppBar from 'material-ui/AppBar';
 
 
 
@@ -54,21 +54,24 @@ export class Navbar extends React.Component<NavbarProps, NavbarState> {
             <Link className="menu-item" to='/'>Home</Link>
           </p>
           <p className='categories'>
-            <Link className="menu-item" to='/News'>News</Link>
+            <Link className="menu-item" to='/FoxSports'>Fox-Sports</Link>
+          </p>
+          <p className='categories'>
+            <Link className="menu-item" to='/CAPI'>NewsCorp-CAPI</Link>
           </p>
           <p className='categories'>
             <Link className="menu-item" to='/Collections'>Collections</Link>
           </p>
         </div>
 
-        <div className="Nav__userprofile content-categories">
-          <p className='categories' onClick={() => this.setCategory("collections")}>
-            <Link className="menu-item" to='/Collections'>
-              Username: <span>{ this.props.username }</span>
-            </Link>
-          </p>
-        </div>
-
+        {/* <div className="Nav__userprofile content-categories"> */}
+        {/*   <p className='categories' onClick={() => this.setCategory("collections")}> */}
+        {/*     <Link className="menu-item" to='/Collections'> */}
+        {/*       Username: <span>{ this.props.username }</span> */}
+        {/*     </Link> */}
+        {/*   </p> */}
+        {/* </div> */}
+        {/*  */}
       </div>
     )
   }

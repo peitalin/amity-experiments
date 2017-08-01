@@ -10,7 +10,7 @@ var sendFile = require('koa-send')
 
 var koa = new Koa();
 var router = new Router()
-var PORT = process.env.PORT || 9000;
+var PORT = process.env.PORT || 3333;
 
 router.get('/', async(ctx) => {
   await sendFile(ctx, '/index.html', { root: 'dist' })
