@@ -41,6 +41,8 @@ const Collections = asyncComponent({ loader: () => System.import('./components/C
 
 const NewsHunt = asyncComponent({ loader: () => System.import('./components/NewsHunt.tsx') })
 const ScrapeNews = asyncComponent({ loader: () => System.import('./components/ScrapeNews.tsx') })
+const PickNewsPublisher = asyncComponent({ loader: () => System.import('./components/PickNewsPublisher.tsx') })
+
 
 
 const Login = (): JSX.Element => {
@@ -61,6 +63,7 @@ export default class AppRoutes extends React.Component {
           <Route path="/" component={ Login } />
           <Route exact path="/" component={ NewsHunt } />
           <Route exact path="/" component={ ScrapeNews } />
+          <Route exact path="/" component={ PickNewsPublisher } />
           {/* <Route exact path="/" component={ Chat } /> */}
           <Route exact path="/FoxSports" component={ FoxSports } />
           <Route exact path="/FoxSports" component={ Chat } />

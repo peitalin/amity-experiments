@@ -106,7 +106,8 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
 interface ReduxDispatchProps {
 }
 interface ReduxProps {
-  userProfile: iUserProfile // redux
+  userProfile: iUserProfile
+  newsPublisher: string
 }
 interface ReactProps {
   data?: {
@@ -126,8 +127,11 @@ interface ReactState {
 
 //// Apollo-Graphql
 const getNewsArticles = gql`
-query($numberOfArticles: Int!) {
-  allNewsArticles(last: $numberOfArticles) {
+query($numberOfArticles: Int!, $publishedBy: String!) {
+  allNewsArticles(
+    last: $numberOfArticles,
+    filter: { publishedBy: $publishedBy }
+  ) {
     id
     author
     title
@@ -139,9 +143,10 @@ query($numberOfArticles: Int!) {
 }
 `
 let getNewsArticlesQueryOptions = {
-  options: (ownProps) => ({
+  options: (ownProps: ReduxProps & ReactProps) => ({
     variables: {
-      numberOfArticles: 10
+      numberOfArticles: 10,
+      publishedBy: ownProps.newsPublisher,
     }
   })
 }
@@ -150,6 +155,7 @@ let getNewsArticlesQueryOptions = {
 const mapStateToProps = ( state: ReduxState ) => {
   return {
     userProfile: state.reduxUser.userProfile
+    newsPublisher: state.reduxUser.newsPublisher
   }
 }
 

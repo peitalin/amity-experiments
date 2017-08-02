@@ -11,6 +11,8 @@ export interface ReduxState {
 /////////////
 export interface ReduxStateUser {
   userProfile?: iUserProfile // my userprofile
+  newsCategory?: string
+  newsPublisher?: string
 }
 
 const initialReduxStateUser = {
@@ -21,6 +23,8 @@ const initialReduxStateUser = {
     downvotes: 91,
     username: 'tester',
   }
+  newsCategory: 'tech',
+  newsPublisher: 'techcruch',
 }
 
 export const reduxReducerUser = (
@@ -33,6 +37,12 @@ export const reduxReducerUser = (
 
     case A.UPDATE_USER_PROFILE:
       return { ...state, userProfile: action.payload }
+
+    case A.UPDATE_NEWS_CATEGORY:
+      return { ...state, newsCategory: action.payload }
+
+    case A.UPDATE_NEWS_PUBLISHER:
+      return { ...state, newsPublisher: action.payload }
 
     default: {
       return state

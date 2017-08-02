@@ -3,6 +3,10 @@
 import * as React from 'react'
 import { Component } from 'react'
 
+import { connect, Dispatch } from 'react-redux'
+import { ReduxState, ReduxStateUser } from '../redux/reducer'
+import { Actions } from '../redux/actions'
+
 import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
 
@@ -15,7 +19,11 @@ class ScrapeNews extends Component<ReduxProps & ReduxDispatchProps & ReactProps,
   state = {}
 
   componentDidMount() {
-    this.fetchNews({ publisher: 'techcrunch' })
+    this.fetchNews({ publisher: this.props.newsPublisher })
+  }
+
+  componentWillUpdate(nextProps: ReduxProps, nextState) {
+    this.fetchNews({ publisher: nextProps.newsPublisher })
   }
 
   fetchNews = async({ publisher }: { publisher: string }): void => {
@@ -48,7 +56,7 @@ class ScrapeNews extends Component<ReduxProps & ReduxDispatchProps & ReactProps,
   }
 
   handleClick = () => {
-    this.fetchNews({ publisher: 'techcrunch' })
+    this.fetchNews({ publisher: this.props.newsPublisher })
   }
 
   render() {
@@ -61,10 +69,11 @@ class ScrapeNews extends Component<ReduxProps & ReduxDispatchProps & ReactProps,
 }
 
 
-/// Typescript declarations from Props -> PropTypes
+
 interface ReduxDispatchProps {
 }
 interface ReduxProps {
+  newsPublisher: string
 }
 interface ReactProps {
   addNewsArticle?({
@@ -85,6 +94,7 @@ mutation(
   $title: String!,
   $description: String!,
   $publishedAt: String!,
+  $publishedBy: String!,
   $url: String!,
   $urlToImage: String!,
 ) {
@@ -93,6 +103,7 @@ mutation(
     title: $title,
     description: $description,
     publishedAt: $publishedAt,
+    publishedBy: $publishedBy,
     url: $url,
     urlToImage: $urlToImage,
   ) {
@@ -103,4 +114,20 @@ mutation(
 }
 `
 
-export default graphql(addNewsArticle, { name: 'addNewsArticle' })( ScrapeNews )
+
+// Redux
+const mapDispatchToProps = ( dispatch ) => {
+  return {
+    dispatch: dispatch
+  }
+}
+const mapStateToProps = ( state: ReduxState ) => {
+  return {
+    newsPublisher: state.reduxUser.newsPublisher
+  }
+}
+
+export default compose(
+  graphql(addNewsArticle, { name: 'addNewsArticle' }),
+  connect<ReduxProps, ReduxDispatchProps, ReactProps>( mapStateToProps, mapDispatchToProps ),
+)( ScrapeNews )
