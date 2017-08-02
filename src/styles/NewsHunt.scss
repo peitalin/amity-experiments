@@ -30,7 +30,7 @@ body {
   display: block;
   .header_content {
     display: block;
-    padding: 15px 15px;
+    padding: 15px 0px;
     max-width: 1100px;
     margin: auto;
     height: 62px;
@@ -38,6 +38,18 @@ body {
       height: 100%;
       width: auto;
       display: block;
+    }
+    span {
+      float: right;
+      display: block;
+      font-size: 20px;
+      background: white;
+      border: 1px solid grey;
+      border-radius: 50px;
+      width: 40px;
+      height: 40px;
+      padding: 8px 12px;
+      margin-top: -38px;
     }
   }
 }
@@ -61,11 +73,85 @@ body {
       display: block;
       width: 210px;
       flex-flow: row;
+      h3 {
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: .3px;
+        line-height: 16px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      ul{
+        padding-right: 20px;
+        li{
+          &:hover{
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            transition: all 0.5s ease-in-out;
+          }
+          &.active{
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+          }
+          align-items: center;
+          border: 1px solid transparent;
+          box-sizing: border-box;
+          display: flex;
+          padding: 4px;
+          margin-bottom: 4px;
+          border-radius: 3px;
+          span.fa {
+            font-size: 18px;
+            margin-right: 10px;
+            width: 18px;
+          }
+          span.text {
+            display: block;
+            color: #000;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 140px;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 18px;
+          }
+        }
+      }
     }
     .news_hunt_right_side {
       display: block;
       width: 260px;
+      height: 600px;
       flex-flow: row;
+      margin-left: 20px;
+      background: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      p{
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 18px;
+        display: block;
+        padding: 20px;
+      }
+      .news_hunt_header {
+            align-items: baseline;
+            border-bottom: 1px solid #e8e8e8;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            margin: 0 20px;
+              .title {
+                font-size: 20px;
+                font-weight: 300;
+                letter-spacing: .4px;
+                line-height: 20px;
+                color: #222;
+              }
+        }
     }
     .news_hunt_container {
       display: block;
@@ -73,6 +159,8 @@ body {
       flex-flow: row;
       min-width: 0;
       background: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
         .news_hunt_header {
             align-items: baseline;
             border-bottom: 1px solid #e8e8e8;
@@ -86,6 +174,7 @@ body {
                 font-weight: 300;
                 letter-spacing: .4px;
                 line-height: 20px;
+                color: #222;
               }
         }
         .news_hunt_article {
@@ -119,22 +208,28 @@ body {
               text-overflow: ellipsis;
               color: #999;
             }
+            p {
+              font-size: 10px;
+              font-weight: 400;
+              line-height: 8px;
+              color: #999;
+            }
             
           }
           .actions_hunt {
-              align-self: flex-end;
-              display: flex;
-              flex-shrink: 0;
-              margin-left: auto;
+              img {
+                float: left;
+                margin-top: 8px;
+                width: 30px;
+                height: 15px;
+              }
               button {
                 vertical-align: top;
                 border-radius: 3px;
                 border: 1px solid transparent;
                 box-sizing: border-box;
                 outline: 0;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
+                float: right;
                 text-align: center;
                 text-decoration: none!important;
                 background: #fff;

@@ -53,7 +53,7 @@ class ScrapeNews extends Component<ReduxProps & ReduxDispatchProps & ReactProps,
 
   render() {
     return (
-      <div className="scrape_news" style={{ position: 'fixed', top: 10, right: 100, zIndex: 6 }}>
+      <div className="scrape_news" style={{ position: 'fixed', bottom: 20, right: 110, zIndex: 6 }}>
         <button onClick={this.handleClick}>Scrape More News</button>
       </div>
     )

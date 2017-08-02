@@ -57,9 +57,9 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
           <div className='news_hunt_left_side'>
             <h3>Filters</h3>
             <ul>
-              <li>Hot</li>
-              <li>New</li>
-              <li>Top</li>
+              <li className='active'><span className='fa fa-fire'></span> <span className='text'>HOT</span></li>
+              <li><span className='fa fa-plus'></span> <span className='text'>NEW</span></li>
+              <li><span className='fa fa-newspaper-o'></span> <span className='text'>TOP</span></li>
             </ul>
           </div>
           <div className="news_hunt_container">
@@ -77,14 +77,22 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
                     <div className='article_content'>
                       <div className='article_metadata'>
                         <h1>{NewsArticle.title}</h1>
-                        <h2 className=''>{ NewsArticle.id }</h2> 
                         <h4 className=''>{NewsArticle.description}</h4>
-
+                        <p className=''>Journalist - {NewsArticle.author}</p> 
 
                       </div>
                       <div className='actions_hunt'>
-                        <button><span className='fa fa-caret-up'></span>upvote</button>
-                        <button><span className='fa fa-commenting-o'></span>Comment</button>
+                        <img src={require('../img/techcrunch.svg')} />
+                        <button><span className='fa fa-caret-up'></span>234</button>
+                        <button><span className='fa fa-commenting-o'></span>23</button>
+                      </div>
+                      <div className='extras'>
+                        <span>
+                          123 Live
+                        </span>
+                        <span>
+                          1243 <span className='fa fa-eye'></span>
+                        </span>  
                       </div>
                     </div>
                   </div>
@@ -92,8 +100,14 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
             })
           }
           </div>
-          </div>
           <div className='news_hunt_right_side'>
+            <div className="news_hunt_header">
+              <span className='title'>Get Reading!</span>
+            </div>
+            <p>
+              On news hunt you can have a say in what news is hot or not. Just try upvoting an article and see what happens.
+            </p>
+          </div>
           </div>
         </div>
       )
