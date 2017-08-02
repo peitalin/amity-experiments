@@ -40,6 +40,8 @@ const CAPI = asyncComponent({ loader: () => System.import('./components/CAPI/ind
 const Collections = asyncComponent({ loader: () => System.import('./components/Collections.tsx') })
 
 const NewsHunt = asyncComponent({ loader: () => System.import('./components/NewsHunt.tsx') })
+// const NewsSubscriptions = asyncComponent({ loader: () => System.import('./components/NewsSubscriptions.tsx') })
+import NewsSubscriptions from './components/NewsSubscriptions'
 const ScrapeNews = asyncComponent({ loader: () => System.import('./components/ScrapeNews.tsx') })
 const PickNewsPublisher = asyncComponent({ loader: () => System.import('./components/PickNewsPublisher.tsx') })
 
@@ -61,7 +63,8 @@ export default class AppRoutes extends React.Component {
         <div>
           <Route path="/" component={ Navbar } />
           <Route path="/" component={ Login } />
-          <Route exact path="/" component={ NewsHunt } />
+          {/* <Route exact path="/" component={ NewsHunt } /> */}
+          <Route exact path="/" component={ NewsSubscriptions } />
           <Route exact path="/" component={ ScrapeNews } />
           <Route exact path="/" component={ PickNewsPublisher } />
           {/* <Route exact path="/" component={ Chat } /> */}

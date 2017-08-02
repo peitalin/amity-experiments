@@ -6,7 +6,7 @@ export interface iUserProfile {
   emailAddress?: string
   upvotes?: number
   downvotes?: number
-  username?: string
+  name?: string
   newsArticles?: iNewsArticle[]
 }
 
@@ -26,6 +26,7 @@ export interface iNewsArticle {
   title?: string
   url?: string
   urlToImage?: string
+  numberOfLikes?: number
 }
 
 

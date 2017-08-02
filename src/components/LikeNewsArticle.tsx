@@ -25,6 +25,7 @@ export class LikeNewsArticle extends React.Component<ReduxProps & ReduxDispatchP
       variables: {
         UserId: this.props.userProfile.id,
         NewsArticleId: this.props.NewsArticle.id,
+        NumberOfLikes: this.props.NewsArticle.numberOfLikes + 1,
       }
     })
     console.info(`Just liked this article: ${graphqlResponse.data.addToUserOnNewsArticle.newsArticlesNewsArticle.title}`)
@@ -40,6 +41,7 @@ export class LikeNewsArticle extends React.Component<ReduxProps & ReduxDispatchP
       variables: {
         UserId: this.props.userProfile.id,
         NewsArticleId: this.props.NewsArticle.id,
+        NumberOfLikes: this.props.NewsArticle.numberOfLikes - 1,
       }
     })
     console.info(`Remove vote for article: ${graphqlResponse.data.removeFromUserOnNewsArticle.newsArticlesNewsArticle.title}`)
@@ -66,7 +68,7 @@ export class LikeNewsArticle extends React.Component<ReduxProps & ReduxDispatchP
               <span className='fa fa-caret-up'></span>upvote
             </button>
         )}
-        <span>{ this.props.upvotes }</span>
+        <span style={{ fontSize: '1rem', padding: '10px', color: '#1BD1C1' }}>{ this.props.NewsArticle.numberOfLikes }</span>
         <button><span className='fa fa-commenting-o'></span>Comment</button>
       </div>
     )
@@ -75,7 +77,8 @@ export class LikeNewsArticle extends React.Component<ReduxProps & ReduxDispatchP
 
 
 const likeNewsArticle = gql`
-mutation($NewsArticleId: ID!, $UserId: ID!) {
+mutation($NewsArticleId: ID!, $UserId: ID!, $NumberOfLikes: Int!) {
+
   addToUserOnNewsArticle(
     newsArticlesNewsArticleId: $NewsArticleId,
     usersUserId: $UserId,
@@ -92,11 +95,22 @@ mutation($NewsArticleId: ID!, $UserId: ID!) {
       title
     }
   }
+
+  updateNewsArticle(
+    id: $NewsArticleId,
+    numberOfLikes: $NumberOfLikes
+  ) {
+    id
+    numberOfLikes
+    title
+  }
+
 }
 `
 
 const undoLikeNewsArticle = gql`
-mutation($NewsArticleId: ID!, $UserId: ID!) {
+mutation($NewsArticleId: ID!, $UserId: ID!, $NumberOfLikes: Int!) {
+
   removeFromUserOnNewsArticle(
     newsArticlesNewsArticleId: $NewsArticleId,
     usersUserId: $UserId,
@@ -113,6 +127,16 @@ mutation($NewsArticleId: ID!, $UserId: ID!) {
       title
     }
   }
+
+  updateNewsArticle(
+    id: $NewsArticleId,
+    numberOfLikes: $NumberOfLikes
+  ) {
+    id
+    numberOfLikes
+    title
+  }
+
 }
 `
 
@@ -128,12 +152,14 @@ interface ReactProps {
     variables: {
       UserId: string
       NewsArticleId: string
+      NumberOfLikes: number
     }
   }): void // graphql-mutation
   undoLikeNewsArticle?({
     variables: {
       UserId: string
       NewsArticleId: string
+      NumberOfLikes: number
     }
   }): void // graphql-mutation
   NewsArticle: iNewsArticle

@@ -149,6 +149,7 @@ query($numberOfArticles: Int!, $publishedBy: String!) {
     urlToImage
     url
     publishedBy
+    numberOfLikes
     users {
       id
     }
@@ -179,7 +180,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-// Compose Redux + Apollor GraphQL
+// Compose Redux + Apollo GraphQL
 export default compose(
   connect<ReduxDispatchProps, ReduxProps, ReactProps>(mapStateToProps, mapDispatchToProps),
   graphql(getNewsArticles, getNewsArticlesQueryOptions),
