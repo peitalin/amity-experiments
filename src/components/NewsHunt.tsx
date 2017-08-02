@@ -15,6 +15,7 @@ import 'styles/NewsHunt.scss'
 import AddNewsArticle from './AddNewsArticle'
 import Title from './Title'
 import { SpinnerRectangle, SpinnerDots } from './Spinners'
+import LikeNewsArticle from './LikeNewsArticle'
 
 import {
   iUserProfile, iNewsArticle, iNewsApiResponse,
@@ -79,13 +80,8 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
                         <h1>{NewsArticle.title}</h1>
                         <h2 className=''>{ NewsArticle.id }</h2>
                         <h4 className=''>{NewsArticle.description}</h4>
-
-
                       </div>
-                      <div className='actions_hunt'>
-                        <button><span className='fa fa-caret-up'></span>upvote</button>
-                        <button><span className='fa fa-commenting-o'></span>Comment</button>
-                      </div>
+                      <LikeNewsArticle NewsArticle={NewsArticle} upvotes={NewsArticle.users.length}/>
                     </div>
                   </div>
               )
@@ -139,6 +135,9 @@ query($numberOfArticles: Int!, $publishedBy: String!) {
     urlToImage
     url
     publishedBy
+    users {
+      id
+    }
   }
 }
 `

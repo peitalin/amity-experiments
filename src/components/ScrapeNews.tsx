@@ -23,20 +23,28 @@ class ScrapeNews extends Component<ReduxProps & ReduxDispatchProps & ReactProps,
   }
 
   componentWillUpdate(nextProps: ReduxProps, nextState) {
-    this.fetchNews({ publisher: nextProps.newsPublisher })
+    // this.fetchNews({ publisher: nextProps.newsPublisher })
   }
 
   fetchNews = async({ publisher }: { publisher: string }): void => {
     let url = `https://newsapi.org/v1/articles?source=${publisher}&apiKey=${NEWS_API_KEY}`
     let newsData: NewsApiResponse = await fetch(url).then(res => res.json())
+
     if (newsData.articles.length > 0) {
-      newsData.articles.map(NewsArticle => {
-        this.saveToGraphCool(NewsArticle, newsData.source)
-      })
+      try {
+        // try post 1st news article to GraphCool
+        this.saveToGraphCool(newsData.articles[0], newsData.source)
+        // if it doesn't fail (new news), try upload the rest
+        newsData.articles.map(NewsArticle => {
+          this.saveToGraphCool(NewsArticle, newsData.source)
+        })
+      } catch(err) {
+        console.info(err)
+      }
     }
   }
 
-  saveToGraphCool = async(NewsArticle: iNewsArticle, source: string): void => {
+  saveToGraphCool = async(NewsArticle: iNewsArticle, source: string) => {
     try {
       let graphqlResponse: mutationResponse = await this.props.addNewsArticle({
         variables: {
@@ -53,6 +61,7 @@ class ScrapeNews extends Component<ReduxProps & ReduxDispatchProps & ReactProps,
     } catch(err) {
       console.info("Article already exists on GraphCool")
     }
+    return graphqlResponse
   }
 
   handleClick = () => {

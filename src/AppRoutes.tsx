@@ -48,7 +48,7 @@ const PickNewsPublisher = asyncComponent({ loader: () => System.import('./compon
 const Login = (): JSX.Element => {
   const clientId: string = 'uzVT8nCGaQwjyXC2QYyGCfsJOCn6Q61c'
   const domain: string = 'peitalin.au.auth0.com'
-  const redirectUrl: string = '/Collections' // redirect to route on authentication
+  const redirectUrl: string = '/' // redirect to route on authentication
   return <LoginAuth0 clientId={clientId} domain={domain} redirectOnAuth={redirectUrl}/>
 }
 
