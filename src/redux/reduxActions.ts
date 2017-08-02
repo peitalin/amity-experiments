@@ -10,7 +10,7 @@ export const Actions: ActionsInterface = {
 
 interface ActionsInterface {
   User: {
-   UPDATE_USER_GQL: string
+   UPDATE_USER_PROFILE: string
   }
 }
 

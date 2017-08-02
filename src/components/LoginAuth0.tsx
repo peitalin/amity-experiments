@@ -5,7 +5,7 @@ import { graphql, compose } from 'react-apollo'
 import { connect } from 'react-redux'
 import { Actions } from '../redux/reduxActions'
 
-import { userGQL } from '../typings/interfaceDefinitions'
+import { iUserProfile } from '../typings/interfaceDefinitions'
 
 import { Redirect } from 'react-router-dom'
 import Auth0Lock from 'auth0-lock'
@@ -21,11 +21,11 @@ interface LoginAuth0Props {
   domain: string
   createUser(): void
   redirectOnAuth: string
-  updateUserProfileRedux(userProfile: userGQL): void
+  updateUserProfile(userProfile: iUserProfile): void
   data?: {
     loading?: boolean
     error?: boolean | string
-    user?: userGQL
+    user?: iUserProfile
   }
 }
 
@@ -70,7 +70,7 @@ export class LoginAuth0 extends React.Component<LoginAuth0Props, LoginAuth0State
         }).then(res => {
           if (this.props.data.user) {
             console.info("Updating redux userGQL with user profile from graphQL.")
-            this.props.updateUserProfileRedux(this.props.data.user)
+            this.props.updateUserProfile(this.props.data.user)
           } else {
             console.info("New user! Making a new GraphCool User account.")
             this.createUser()
@@ -98,7 +98,8 @@ export class LoginAuth0 extends React.Component<LoginAuth0Props, LoginAuth0State
 
   handleLogin = () => {
     this.lock.show()
-    document.getElementsByClassName('auth0-lock-header-bg auth0-lock-blur-support')[0].style.backgroundColor='#222'
+    document.getElementsByClassName('auth0-lock-header-bg auth0-lock-blur-support')[0].style.backgroundColor = '#222'
+    document.getElementsByClassName('auth0-lock-header-bg-blur')[0].style.opacity = '0.1'
   }
 
   handleLogout = () => {
@@ -165,8 +166,8 @@ query {
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
-    updateUserProfileRedux: (userProfile: userGQL) => dispatch(
-      { type: Actions.User.USER_GQL, payload: userProfile }
+    updateUserProfile: (userProfile: iUserProfile) => dispatch(
+      { type: Actions.User.UPDATE_USER_PROFILE, payload: userProfile }
     )
   }
 }

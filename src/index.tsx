@@ -37,12 +37,13 @@ networkInterface.use([
     }
   }
 ]);
-const wsClient = new SubscriptionClient(
-  `wss://subscriptions.graph.cool/v1/${GRAPHQL_PROJECT_ID}`,
-  { reconnect: true }
-);
+// const wsClient = new SubscriptionClient(
+//   `wss://subscriptions.graph.cool/v1/${GRAPHQL_PROJECT_ID}`,
+//   { reconnect: true }
+// );
 const apolloClient = new ApolloClient({
-  networkInterface: addGraphQLSubscriptions(networkInterface, wsClient),
+  // networkInterface: addGraphQLSubscriptions(networkInterface, wsClient),
+  networkInterface: addGraphQLSubscriptions(networkInterface),
   dataIdFromObject: o => o.id, // enable object ID for better cacheing
   queryDeduplication: true, // batch graphql queries
   // initialState: initialState,
@@ -50,11 +51,8 @@ const apolloClient = new ApolloClient({
 })
 
 
-interface AppApolloState {
-  rehydrated: boolean
-}
 
-class AppApollo extends React.Component<any, AppApolloState> {
+class AppApollo extends React.Component<any, any> {
 
   state = { rehydrated: false }
 
@@ -64,7 +62,8 @@ class AppApollo extends React.Component<any, AppApolloState> {
 
   private persistReduxStore = (GRAPHQL_PROJECT_ID) => {
 
-    let persistState = false;
+    // let persistState = false;
+    let persistState = true;
 
     getStoredState({ storage: localforage }, (err, rehydratedState) => {
       // const initialState = { apollo: { data: rehydratedState.apollo ? rehydratedState.apollo.data : {} }}

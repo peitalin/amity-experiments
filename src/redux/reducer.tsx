@@ -15,6 +15,7 @@ export interface ReduxStateUser {
 
 const initialReduxStateUser = {
   userProfile: {
+    id: 'cx12312graphcool'
     emailAddress: 'test@amity.io',
     upvotes: 123,
     downvotes: 91,
@@ -30,7 +31,7 @@ export const reduxReducerUser = (
   let A = Actions.User
   switch ( action.type ) {
 
-    case A.USER_GQL:
+    case A.UPDATE_USER_PROFILE:
       return { ...state, userProfile: action.payload }
 
     default: {
@@ -38,5 +39,6 @@ export const reduxReducerUser = (
     }
   }
 }
+
 
 

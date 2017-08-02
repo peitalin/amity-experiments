@@ -34,11 +34,13 @@ const LoginAuth0 = asyncComponent({ loader: () => System.import('./components/Lo
 const Navbar = asyncComponent({ loader: () => System.import('./components/Navbar.tsx') })
 const Parallax = asyncComponent({ loader: () => System.import('./components/Parallax.tsx') })
 
-const NewsHunt = asyncComponent({ loader: () => System.import('./components/NewsHunt.tsx') })
 const FoxSports = asyncComponent({ loader: () => System.import('./components/FoxSports.tsx') })
 const Chat = asyncComponent({ loader: () => System.import('./components/Chat/index.tsx') })
 const CAPI = asyncComponent({ loader: () => System.import('./components/CAPI/index.tsx') })
 const Collections = asyncComponent({ loader: () => System.import('./components/Collections.tsx') })
+
+const NewsHunt = asyncComponent({ loader: () => System.import('./components/NewsHunt.tsx') })
+const ScrapeNews = asyncComponent({ loader: () => System.import('./components/ScrapeNews.tsx') })
 
 
 const Login = (): JSX.Element => {
@@ -58,6 +60,7 @@ export default class AppRoutes extends React.Component {
           <Route path="/" component={ Navbar } />
           <Route path="/" component={ Login } />
           <Route exact path="/" component={ NewsHunt } />
+          <Route exact path="/" component={ ScrapeNews } />
           {/* <Route exact path="/" component={ Chat } /> */}
           <Route exact path="/FoxSports" component={ FoxSports } />
           <Route exact path="/FoxSports" component={ Chat } />

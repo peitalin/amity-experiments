@@ -11,7 +11,7 @@ interface SpinnerRectangleProps {
 
 class SpinnerRectangle extends React.Component<SpinnerRectangleProps, any> {
 
-  defaultProps = {
+  static defaultProps = {
     height: '24px',
     width: '8px',
     color: '#eee',
