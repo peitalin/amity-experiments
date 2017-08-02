@@ -7,6 +7,7 @@ export interface iUserProfile {
   upvotes?: number
   downvotes?: number
   username?: string
+  newsArticles?: iNewsArticle[]
 }
 
 /// News Data from https://newsapi.org/
@@ -37,6 +38,11 @@ export interface graphqlMutationResponse {
     deleteNewsArticle?: iNewsArticle
 
     addToUserOnNewsArticle?: {
+      usersUser: iUserProfile
+      newsArticlesNewsArticle: iNewsArticle
+    }
+
+    removeFromUserOnNewsArticle?: {
       usersUser: iUserProfile
       newsArticlesNewsArticle: iNewsArticle
     }

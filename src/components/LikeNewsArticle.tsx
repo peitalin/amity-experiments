@@ -27,16 +27,45 @@ export class LikeNewsArticle extends React.Component<ReduxProps & ReduxDispatchP
         NewsArticleId: this.props.NewsArticle.id,
       }
     })
-    console.info(`Just followed this article: ${graphqlResponse.data.addToUserOnNewsArticle.newsArticlesNewsArticle.title}`)
+    console.info(`Just liked this article: ${graphqlResponse.data.addToUserOnNewsArticle.newsArticlesNewsArticle.title}`)
+    this.props.updateLikedArticles(
+      graphqlResponse.data.addToUserOnNewsArticle.usersUser.newsArticles
+    )
+  }
+
+  private undoLikeThisNewsArticle = async(): void => {
+    console.info(`User ${this.props.userProfile.id}:`)
+    // GraphQL unlink User and NewsArticle data model
+    let graphqlResponse: mutationResponse = await this.props.undoLikeNewsArticle({
+      variables: {
+        UserId: this.props.userProfile.id,
+        NewsArticleId: this.props.NewsArticle.id,
+      }
+    })
+    console.info(`Remove vote for article: ${graphqlResponse.data.removeFromUserOnNewsArticle.newsArticlesNewsArticle.title}`)
+    this.props.updateLikedArticles(
+      graphqlResponse.data.removeFromUserOnNewsArticle.usersUser.newsArticles
+    )
+  }
+
+  isUpvotedArticle = () => {
+    return this.props.userProfile.newsArticles.map(newsArticle => newsArticle.id)
+      .includes(this.props.NewsArticle.id)
   }
 
   render() {
     return (
       <div className='actions_hunt'>
         <img src={require('../img/techcrunch.svg')} />
-        <button onClick={this.likeThisNewsArticle}>
-          <span className='fa fa-caret-up'></span>upvote
-        </button>
+        {(
+          this.isUpvotedArticle()
+          ? <button onClick={this.undoLikeThisNewsArticle}>
+              <span className='fa fa-caret-down'></span>undo upvote
+            </button>
+          : <button onClick={this.likeThisNewsArticle}>
+              <span className='fa fa-caret-up'></span>upvote
+            </button>
+        )}
         <span>{ this.props.upvotes }</span>
         <button><span className='fa fa-commenting-o'></span>Comment</button>
       </div>
@@ -54,6 +83,30 @@ mutation($NewsArticleId: ID!, $UserId: ID!) {
     usersUser {
       id
       emailAddress
+      newsArticles {
+        id
+      }
+    }
+    newsArticlesNewsArticle {
+      id
+      title
+    }
+  }
+}
+`
+
+const undoLikeNewsArticle = gql`
+mutation($NewsArticleId: ID!, $UserId: ID!) {
+  removeFromUserOnNewsArticle(
+    newsArticlesNewsArticleId: $NewsArticleId,
+    usersUserId: $UserId,
+  ) {
+    usersUser {
+      id
+      emailAddress
+      newsArticles {
+        id
+      }
     }
     newsArticlesNewsArticle {
       id
@@ -65,6 +118,7 @@ mutation($NewsArticleId: ID!, $UserId: ID!) {
 
 interface ReduxDispatchProps {
   updateUserProfile?(userProfile: iUserProfile): void // redux
+  updateLikedArticles?(likedArticles: iNewsArticle[]): void // redux
 }
 interface ReduxProps {
   userProfile: iUserProfile // redux
@@ -72,13 +126,14 @@ interface ReduxProps {
 interface ReactProps {
   likeNewsArticle?({
     variables: {
-      author: string
-      title: string
-      description: string
-      publishedAt: string
-      url: string
-      urlToImage: string
-      userId: string
+      UserId: string
+      NewsArticleId: string
+    }
+  }): void // graphql-mutation
+  undoLikeNewsArticle?({
+    variables: {
+      UserId: string
+      NewsArticleId: string
     }
   }): void // graphql-mutation
   NewsArticle: iNewsArticle
@@ -100,12 +155,16 @@ const mapDispatchToProps = ( dispatch ) => {
     updateUserProfile: (userProfile: iUserProfile) => dispatch(
       { type: A.User.UPDATE_USER_PROFILE, payload: userProfile }
     ),
+    updateLikedArticles: (likedArticles: iNewsArticle[]) => dispatch(
+      { type: A.User.UPDATE_LIKED_ARTICLES, payload: likedArticles }
+    ),
     dispatch: dispatch,
   }
 }
 
 export default compose(
   graphql(likeNewsArticle, { name: 'likeNewsArticle' }),
+  graphql(undoLikeNewsArticle, { name: 'undoLikeNewsArticle' }),
   connect(mapStateToProps, mapDispatchToProps)
 )( LikeNewsArticle )
 

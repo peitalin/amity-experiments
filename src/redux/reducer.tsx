@@ -21,10 +21,11 @@ const initialReduxStateUser = {
     emailAddress: 'test@amity.io',
     upvotes: 123,
     downvotes: 91,
-    username: 'tester',
+    name: 'tester',
+    newsArticles: [],
   }
   newsCategory: 'tech',
-  newsPublisher: 'techcruch',
+  newsPublisher: 'techcrunch',
 }
 
 export const reduxReducerUser = (
@@ -43,6 +44,15 @@ export const reduxReducerUser = (
 
     case A.UPDATE_NEWS_PUBLISHER:
       return { ...state, newsPublisher: action.payload }
+
+    case A.UPDATE_LIKED_ARTICLES:
+      return {
+        ...state,
+        userProfile: {
+          ...state.userProfile,
+          newsArticles: action.payload
+        }
+      }
 
     default: {
       return state

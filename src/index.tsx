@@ -37,13 +37,12 @@ networkInterface.use([
     }
   }
 ]);
-// const wsClient = new SubscriptionClient(
-//   `wss://subscriptions.graph.cool/v1/${GRAPHQL_PROJECT_ID}`,
-//   { reconnect: true }
-// );
+const wsClient = new SubscriptionClient(
+  `wss://subscriptions.graph.cool/v1/${GRAPHQL_PROJECT_ID}`,
+  { reconnect: true }
+);
 const apolloClient = new ApolloClient({
-  // networkInterface: addGraphQLSubscriptions(networkInterface, wsClient),
-  networkInterface: addGraphQLSubscriptions(networkInterface),
+  networkInterface: addGraphQLSubscriptions(networkInterface, wsClient),
   dataIdFromObject: o => o.id, // enable object ID for better cacheing
   queryDeduplication: true, // batch graphql queries
   // initialState: initialState,
