@@ -17,6 +17,7 @@ export interface iNewsApiResponse {
   status: string
 }
 export interface iNewsArticle {
+  id?: string
   author?: string
   description?: string
   publishedAt?: string
@@ -35,22 +36,10 @@ export interface graphqlMutationResponse {
     createNewsArticle?: iNewsArticle
     deleteNewsArticle?: iNewsArticle
 
-    addToNewsArticlesHouse?: {
-      userUser: userGQL
-      predictionsNewsArticle: {
-        id: string
-        prediction: number
-      }
+    addToUserOnNewsArticle?: {
+      usersUser: iUserProfile
+      newsArticlesNewsArticle: iNewsArticle
     }
-
-    addToUserNewsArticles?: {
-      userUser: userGQL
-      predictionsNewsArticle: {
-        id: string
-        prediction: number
-      }
-    }
-
 
   }
 }

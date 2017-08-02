@@ -15,6 +15,7 @@ import 'styles/NewsHunt.scss'
 import AddNewsArticle from './AddNewsArticle'
 import Title from './Title'
 import { SpinnerRectangle, SpinnerDots } from './Spinners'
+import LikeNewsArticle from './LikeNewsArticle'
 
 import {
   iUserProfile, iNewsArticle, iNewsApiResponse,
@@ -35,17 +36,17 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
 
 
   render() {
-  if (this.props.data.loading) { 
-    return <Title><SpinnerRectangle height='66px' width='8px' dark/></Title> 
-  } 
-  if (this.props.data.error) { 
-    return <Title>Error in NewsHunt.tsx</Title> 
-  } 
-  if (this.props.data.allNewsArticles.length === 0) { 
-    return <Title>No News Articles</Title> 
-  } else { 
+  if (this.props.data.loading) {
+    return <Title><SpinnerRectangle height='66px' width='8px' dark/></Title>
+  }
+  if (this.props.data.error) {
+    return <Title>Error in NewsHunt.tsx</Title>
+  }
+  if (this.props.data.allNewsArticles.length === 0) {
+    return <Title>No News Articles</Title>
+  } else {
     return (
-      
+
       <div className='news_hunt'>
         <div className='news_hunt_header'>
           <div className='header_content'>
@@ -78,21 +79,16 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
                       <div className='article_metadata'>
                         <h1>{NewsArticle.title}</h1>
                         <h4 className=''>{NewsArticle.description}</h4>
-                        <p className=''>Journalist - {NewsArticle.author}</p> 
-
+                        <p className=''>Journalist - {NewsArticle.author}</p>
                       </div>
-                      <div className='actions_hunt'>
-                        <img src={require('../img/techcrunch.svg')} />
-                        <button><span className='fa fa-caret-up'></span>234</button>
-                        <button><span className='fa fa-commenting-o'></span>23</button>
-                      </div>
+                      <LikeNewsArticle NewsArticle={NewsArticle} upvotes={NewsArticle.users.length}/>
                       <div className='extras'>
                         <span>
                           123 Live
                         </span>
                         <span>
                           1243 <span className='fa fa-eye'></span>
-                        </span>  
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -120,7 +116,8 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
 interface ReduxDispatchProps {
 }
 interface ReduxProps {
-  userProfile: iUserProfile // redux
+  userProfile: iUserProfile
+  newsPublisher: string
 }
 interface ReactProps {
   data?: {
@@ -140,8 +137,11 @@ interface ReactState {
 
 //// Apollo-Graphql
 const getNewsArticles = gql`
-query($numberOfArticles: Int!) {
-  allNewsArticles(last: $numberOfArticles) {
+query($numberOfArticles: Int!, $publishedBy: String!) {
+  allNewsArticles(
+    last: $numberOfArticles,
+    filter: { publishedBy: $publishedBy }
+  ) {
     id
     author
     title
@@ -149,13 +149,17 @@ query($numberOfArticles: Int!) {
     urlToImage
     url
     publishedBy
+    users {
+      id
+    }
   }
 }
 `
 let getNewsArticlesQueryOptions = {
-  options: (ownProps) => ({
+  options: (ownProps: ReduxProps & ReactProps) => ({
     variables: {
-      numberOfArticles: 10
+      numberOfArticles: 10,
+      publishedBy: ownProps.newsPublisher,
     }
   })
 }
@@ -164,6 +168,7 @@ let getNewsArticlesQueryOptions = {
 const mapStateToProps = ( state: ReduxState ) => {
   return {
     userProfile: state.reduxUser.userProfile
+    newsPublisher: state.reduxUser.newsPublisher
   }
 }
 

@@ -5,12 +5,16 @@ export type ActionType = { type: string, payload: any }
 export const Actions: ActionsInterface = {
   User: {
    UPDATE_USER_PROFILE: "UPDATE_USER_PROFILE",
+   UPDATE_NEWS_CATEGORY: "UPDATE_NEWS_CATEGORY",
+   UPDATE_NEWS_PUBLISHER: "UPDATE_NEWS_PUBLISHER",
   }
 }
 
 interface ActionsInterface {
   User: {
    UPDATE_USER_PROFILE: string
+   UPDATE_NEWS_CATEGORY: string
+   UPDATE_NEWS_PUBLISHER: string
   }
 }
 

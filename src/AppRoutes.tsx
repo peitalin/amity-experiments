@@ -41,12 +41,14 @@ const Collections = asyncComponent({ loader: () => System.import('./components/C
 
 const NewsHunt = asyncComponent({ loader: () => System.import('./components/NewsHunt.tsx') })
 const ScrapeNews = asyncComponent({ loader: () => System.import('./components/ScrapeNews.tsx') })
+const PickNewsPublisher = asyncComponent({ loader: () => System.import('./components/PickNewsPublisher.tsx') })
+
 
 
 const Login = (): JSX.Element => {
   const clientId: string = 'uzVT8nCGaQwjyXC2QYyGCfsJOCn6Q61c'
   const domain: string = 'peitalin.au.auth0.com'
-  const redirectUrl: string = '/Collections' // redirect to route on authentication
+  const redirectUrl: string = '/' // redirect to route on authentication
   return <LoginAuth0 clientId={clientId} domain={domain} redirectOnAuth={redirectUrl}/>
 }
 
@@ -61,6 +63,7 @@ export default class AppRoutes extends React.Component {
           <Route path="/" component={ Login } />
           <Route exact path="/" component={ NewsHunt } />
           <Route exact path="/" component={ ScrapeNews } />
+          <Route exact path="/" component={ PickNewsPublisher } />
           {/* <Route exact path="/" component={ Chat } /> */}
           <Route exact path="/FoxSports" component={ FoxSports } />
           <Route exact path="/FoxSports" component={ Chat } />
