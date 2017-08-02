@@ -35,17 +35,17 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
 
 
   render() {
-  if (this.props.data.loading) { 
-    return <Title><SpinnerRectangle height='66px' width='8px' dark/></Title> 
-  } 
-  if (this.props.data.error) { 
-    return <Title>Error in NewsHunt.tsx</Title> 
-  } 
-  if (this.props.data.allNewsArticles.length === 0) { 
-    return <Title>No News Articles</Title> 
-  } else { 
+  if (this.props.data.loading) {
+    return <Title><SpinnerRectangle height='66px' width='8px' dark/></Title>
+  }
+  if (this.props.data.error) {
+    return <Title>Error in NewsHunt.tsx</Title>
+  }
+  if (this.props.data.allNewsArticles.length === 0) {
+    return <Title>No News Articles</Title>
+  } else {
     return (
-      
+
       <div className='news_hunt'>
         <div className='news_hunt_header'>
           <div className='header_content'>
@@ -77,7 +77,7 @@ class NewsHunt extends Component<ReduxProps & ReduxDispatchProps & ReactProps, R
                     <div className='article_content'>
                       <div className='article_metadata'>
                         <h1>{NewsArticle.title}</h1>
-                        <h2 className=''>{ NewsArticle.id }</h2> 
+                        <h2 className=''>{ NewsArticle.id }</h2>
                         <h4 className=''>{NewsArticle.description}</h4>
 
 
